@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover">
     <title>Dan Abibi Shopping Complex — Homes & Furnitures</title>
     <meta name="description" content="Dan Abibi Shopping Complex — Small detail, big impact. Imported quality furniture, kitchenware, electronics & more. Kano, Nigeria.">
     <link rel="icon" type="image/png" href="https://i.postimg.cc/dQNDT7Sg/Chat-GPT-Image-Jul-7-2026-12-39-54-AM.png">
     <link rel="apple-touch-icon" href="https://i.postimg.cc/dQNDT7Sg/Chat-GPT-Image-Jul-7-2026-12-39-54-AM.png">
+
+    <!-- Font Awesome 6 (modern icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,10 +47,13 @@
             --serif: 'Playfair Display', serif;
             --sans: 'Outfit', sans-serif;
             --nav-height: 68px;
+            --transition: 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
         }
         html {
             scroll-behavior: smooth;
@@ -544,7 +550,7 @@
             font-size: 17px;
         }
 
-        /* ============ FEATURED SECTION - REDESIGNED ============ */
+        /* ============ FEATURED SECTION ============ */
         #featuredSection {
             background: linear-gradient(180deg, #fcfbf9 0%, #f5f0ea 100%);
             padding: 70px 16px 80px;
@@ -854,7 +860,101 @@
             margin: 0 0 6px;
         }
 
-        /* ============ SECTIONS ============ */
+        /* ============ CATEGORIES - MODERN & PREMIUM ============ */
+        .catrow {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 18px;
+        }
+        .catcard {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 24px 12px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .03);
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+        .catcard::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-grad);
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: var(--radius);
+        }
+        .catcard::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--gold-grad);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        .catcard:hover::after,
+        .catcard.active::after {
+            width: 60%;
+        }
+        .catcard:hover,
+        .catcard:active {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-soft);
+            border-color: rgba(243, 156, 18, .2);
+        }
+        .catcard:hover::before,
+        .catcard:active::before {
+            opacity: .05;
+        }
+        .catcard.active {
+            border-color: var(--orange);
+            box-shadow: var(--shadow-gold);
+        }
+        .catcard.active::before {
+            opacity: .06;
+        }
+        .caticon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            display: block;
+            transition: var(--transition);
+        }
+        .catcard:hover .caticon {
+            transform: scale(1.1);
+        }
+        .catname {
+            font-weight: 600;
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+            color: var(--charcoal);
+            transition: var(--transition);
+        }
+        .catcard:hover .catname,
+        .catcard.active .catname {
+            color: var(--gold);
+        }
+        .catcard .cat-count {
+            display: block;
+            font-size: 10px;
+            color: #aaa;
+            font-weight: 400;
+            margin-top: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ PRODUCTS ============ */
         .section {
             padding: 60px 16px;
         }
@@ -880,60 +980,6 @@
             font-size: 14px;
         }
 
-        /* categories */
-        .catrow {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 14px;
-        }
-        .catcard {
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: var(--radius);
-            padding: 18px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: .3s;
-            position: relative;
-            overflow: hidden;
-            touch-action: manipulation;
-        }
-        .catcard::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--gold-grad);
-            opacity: 0;
-            transition: .3s;
-        }
-        .catcard:hover,
-        .catcard:active {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-soft);
-            border-color: var(--orange);
-        }
-        .catcard:hover::before,
-        .catcard:active::before {
-            opacity: .06;
-        }
-        .catcard.active {
-            border-color: var(--orange);
-            box-shadow: var(--shadow-gold);
-        }
-        .caticon {
-            font-size: 28px;
-            margin-bottom: 6px;
-            position: relative;
-            z-index: 1;
-        }
-        .catname {
-            font-weight: 600;
-            font-size: 12px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* products */
         .searchbar {
             display: flex;
             gap: 8px;
@@ -954,6 +1000,9 @@
             background: transparent;
             min-height: 44px;
         }
+        .searchbar input:focus {
+            box-shadow: none;
+        }
         .searchbar button {
             background: var(--gold-grad);
             color: #000;
@@ -964,6 +1013,10 @@
             font-size: 12px;
             touch-action: manipulation;
             flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .searchbar button:hover {
+            transform: scale(1.03);
         }
 
         .prodgrid {
@@ -977,15 +1030,16 @@
             overflow: hidden;
             border: 1px solid #eee;
             cursor: pointer;
-            transition: .35s cubic-bezier(.2, .8, .2, 1);
+            transition: var(--transition);
             position: relative;
             touch-action: manipulation;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .02);
         }
         .prodcard:hover,
         .prodcard:active {
             transform: translateY(-6px);
             box-shadow: var(--shadow-soft);
-            border-color: rgba(243, 156, 18, .4);
+            border-color: rgba(243, 156, 18, .3);
         }
         .prodimgwrap {
             position: relative;
@@ -997,7 +1051,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: .5s;
+            transition: .6s;
         }
         .prodcard:hover .prodimgwrap img {
             transform: scale(1.06);
@@ -1052,9 +1106,14 @@
             font-size: 11px;
             color: #999;
             margin-bottom: 6px;
+            flex-wrap: wrap;
         }
         .prodrating .stars {
             color: var(--orange);
+        }
+        .prodrating .rating-count {
+            font-size: 10px;
+            color: #aaa;
         }
         .prodprice {
             display: flex;
@@ -1070,6 +1129,39 @@
             font-size: 12px;
             color: #aaa;
             text-decoration: line-through;
+        }
+        .prod-actions-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .prod-actions-row .addbtn {
+            margin-top: 0;
+            flex: 1;
+            min-width: 60px;
+            padding: 10px 8px;
+            font-size: 11px;
+        }
+        .prod-actions-row .icon-btn-sm {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: none;
+            background: var(--black);
+            color: var(--orange);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .3s;
+            touch-action: manipulation;
+            flex-shrink: 0;
+        }
+        .prod-actions-row .icon-btn-sm:hover,
+        .prod-actions-row .icon-btn-sm:active {
+            background: var(--gold-grad);
+            color: #000;
         }
         .addbtn {
             margin-top: 10px;
@@ -1148,11 +1240,50 @@
         .footgrid a:hover {
             color: var(--orange);
         }
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .06);
+            color: var(--silver);
+            font-size: 18px;
+            transition: .3s;
+            border: 1px solid rgba(255, 255, 255, .06);
+        }
+        .social-icons a:hover {
+            background: var(--gold-grad);
+            color: #000;
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
         .footbottom {
             padding-top: 18px;
             text-align: center;
             font-size: 11px;
             color: #888;
+        }
+        .footbottom .developer-credit {
+            margin-top: 6px;
+            color: #666;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+        .footbottom .developer-credit a {
+            color: var(--orange);
+            font-weight: 600;
+            transition: .3s;
+        }
+        .footbottom .developer-credit a:hover {
+            color: #fff;
         }
 
         /* ============ MODALS ============ */
@@ -1216,6 +1347,7 @@
             align-items: center;
             justify-content: center;
             touch-action: manipulation;
+            transition: .3s;
         }
         .modalclose:hover,
         .modalclose:active {
@@ -1223,7 +1355,7 @@
             color: #000;
         }
 
-        /* product modal */
+        /* ============ PRODUCT MODAL - MODERN GALLERY ============ */
         .pm-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1236,46 +1368,123 @@
         .pm-slider {
             position: relative;
             background: #111;
+            overflow: hidden;
         }
-        .pm-slides {
+        .pm-slider .pm-main-slide {
+            width: 100%;
+            height: 340px;
+            overflow: hidden;
+            position: relative;
+        }
+        .pm-slider .pm-main-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .pm-slider .pm-main-slide img:hover {
+            transform: scale(1.03);
+        }
+        .pm-slider .pm-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .6);
+            color: #fff;
+            border: none;
+            font-size: 16px;
             display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .3s;
+            z-index: 3;
+            touch-action: manipulation;
+        }
+        .pm-slider .pm-nav:hover {
+            background: var(--orange);
+            color: #000;
+        }
+        .pm-slider .pm-nav.prev {
+            left: 12px;
+        }
+        .pm-slider .pm-nav.next {
+            right: 12px;
+        }
+        .pm-slider .pm-thumbs {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, .8);
             overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
         }
-        .pm-slides::-webkit-scrollbar {
-            display: none;
+        .pm-slider .pm-thumbs::-webkit-scrollbar {
+            height: 4px;
         }
-        .pm-slides img {
-            scroll-snap-align: start;
-            min-width: 100%;
-            height: 300px;
+        .pm-slider .pm-thumbs::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+        .pm-slider .pm-thumbs .thumb {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: .3s;
+            opacity: .6;
+        }
+        .pm-slider .pm-thumbs .thumb:hover {
+            opacity: 1;
+        }
+        .pm-slider .pm-thumbs .thumb.active {
+            border-color: var(--orange);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        .pm-slider .pm-thumbs .thumb img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
-        .pm-dots {
+        .pm-slider .pm-badge {
             position: absolute;
-            bottom: 12px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 6px;
+            top: 14px;
+            left: 14px;
+            z-index: 2;
+            background: var(--gold-grad);
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-gold);
         }
-        .pm-dots span {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .5);
-            transition: .3s;
+        .pm-slider .pm-badge-discount {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 2;
+            background: #c0392b;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(192, 57, 43, .3);
         }
-        .pm-dots span.active {
-            background: var(--orange);
-            width: 20px;
-            border-radius: 6px;
-        }
+
         .pm-info {
             padding: 22px;
+            overflow-y: auto;
         }
         .pm-cat {
             color: var(--gold);
@@ -1302,6 +1511,10 @@
         .pm-rating .stars {
             color: var(--orange);
             font-size: 14px;
+        }
+        .pm-rating .rating-count {
+            font-size: 11px;
+            color: #aaa;
         }
         .pm-price-row {
             display: flex;
@@ -1365,6 +1578,129 @@
             color: #888;
             font-size: 11.5px;
         }
+
+        .pm-rating-section {
+            margin: 14px 0 12px;
+            padding-top: 14px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .pm-rating-section .rate-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--charcoal);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .pm-rating-section .star-input {
+            display: flex;
+            gap: 6px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .pm-rating-section .star-input span {
+            transition: .2s;
+            color: #ddd;
+            cursor: pointer;
+        }
+        .pm-rating-section .star-input span.active {
+            color: var(--orange);
+        }
+        .pm-rating-section .star-input span:hover {
+            transform: scale(1.2);
+        }
+        .pm-rating-section .rating-msg {
+            font-size: 12px;
+            color: var(--gold);
+            margin-top: 4px;
+        }
+        .pm-feedback-section {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .pm-feedback-section .fb-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--charcoal);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .pm-feedback-section textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: var(--sans);
+            font-size: 12px;
+            resize: vertical;
+            min-height: 60px;
+            outline: none;
+            transition: .2s;
+        }
+        .pm-feedback-section textarea:focus {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, .1);
+        }
+        .pm-feedback-section .fb-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .pm-feedback-section .fb-actions .btn-sm {
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            border: none;
+            transition: .3s;
+            touch-action: manipulation;
+        }
+        .pm-feedback-section .fb-actions .btn-sm.gold {
+            background: var(--gold-grad);
+            color: #000;
+        }
+        .pm-feedback-section .fb-actions .btn-sm.outline {
+            background: transparent;
+            border: 1px solid #ddd;
+            color: #888;
+        }
+        .pm-feedback-section .fb-list {
+            margin-top: 10px;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+        .pm-feedback-section .fb-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 12px;
+            color: #555;
+        }
+        .pm-feedback-section .fb-item .fb-name {
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+        .pm-feedback-section .fb-item .fb-stars {
+            color: var(--orange);
+            font-size: 11px;
+        }
+        .pm-feedback-section .fb-item .fb-text {
+            display: block;
+            margin-top: 2px;
+            line-height: 1.5;
+        }
+        .pm-feedback-section .fb-item .fb-time {
+            font-size: 9px;
+            color: #bbb;
+            float: right;
+        }
+        .pm-feedback-section .fb-empty {
+            font-size: 12px;
+            color: #bbb;
+            text-align: center;
+            padding: 8px 0;
+        }
+
         .qtyrow {
             display: flex;
             align-items: center;
@@ -1387,6 +1723,7 @@
             font-weight: 700;
             color: var(--charcoal);
             touch-action: manipulation;
+            transition: .2s;
         }
         .qtybtn:hover,
         .qtybtn:active {
@@ -1402,12 +1739,14 @@
         .pm-actions {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .pm-actions button {
             flex: 1;
+            min-width: 100px;
         }
 
-        /* cart drawer */
+        /* ============ CART ============ */
         #cartOverlay {
             align-items: stretch;
             justify-content: flex-end;
@@ -1524,7 +1863,7 @@
             padding: 13px;
         }
 
-        /* checkout form */
+        /* ============ CHECKOUT ============ */
         .form-row {
             margin-bottom: 14px;
         }
@@ -1566,46 +1905,8 @@
                 grid-template-columns: 1fr;
             }
         }
-        .stepwrap {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        .stepdot {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #eee;
-            color: #999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 12px;
-            transition: .3s;
-            flex-shrink: 0;
-        }
-        .stepdot.active {
-            background: var(--gold-grad);
-            color: #000;
-        }
-        .stepdot.done {
-            background: var(--charcoal);
-            color: var(--orange);
-        }
-        .stepline {
-            width: 28px;
-            height: 2px;
-            background: #eee;
-            flex-shrink: 0;
-        }
-        .stepline.done {
-            background: var(--gold-grad);
-        }
 
-        /* success modal */
+        /* ============ SUCCESS ============ */
         .success-icon {
             width: 72px;
             height: 72px;
@@ -1655,7 +1956,7 @@
             touch-action: manipulation;
         }
 
-        /* track steps */
+        /* ============ TRACKING ============ */
         .trackline {
             display: flex;
             align-items: center;
@@ -1713,8 +2014,12 @@
         .trackstep:first-child .connector {
             display: none;
         }
+        .track-payment-btn {
+            margin-top: 14px;
+            text-align: center;
+        }
 
-        /* auth pages */
+        /* ============ AUTH ============ */
         .authwrap {
             min-height: 86vh;
             display: flex;
@@ -1784,8 +2089,46 @@
             font-weight: 800;
             flex-shrink: 0;
         }
+        .stepwrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .stepdot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #eee;
+            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            transition: .3s;
+            flex-shrink: 0;
+        }
+        .stepdot.active {
+            background: var(--gold-grad);
+            color: #000;
+        }
+        .stepdot.done {
+            background: var(--charcoal);
+            color: var(--orange);
+        }
+        .stepline {
+            width: 28px;
+            height: 2px;
+            background: #eee;
+            flex-shrink: 0;
+        }
+        .stepline.done {
+            background: var(--gold-grad);
+        }
 
-        /* dashboard */
+        /* ============ DASHBOARD ============ */
         .dashwrap {
             display: flex;
             min-height: 86vh;
@@ -1973,7 +2316,7 @@
             border: 1px solid var(--orange);
         }
 
-        /* invoice (print) */
+        /* ============ INVOICE (PRINT) ============ */
         #invoiceArea {
             position: fixed;
             left: -9999px;
@@ -2148,7 +2491,7 @@
             }
         }
 
-        /* toast */
+        /* ============ TOAST ============ */
         #toastwrap {
             position: fixed;
             top: 16px;
@@ -2183,7 +2526,7 @@
             }
         }
 
-        /* scroll reveal */
+        /* ============ SCROLL REVEAL ============ */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -2194,16 +2537,7 @@
             transform: translateY(0);
         }
 
-        .reprint-btn-wrap {
-            margin-top: 14px;
-            text-align: center;
-        }
-        .reprint-btn-wrap .btn-primary {
-            font-size: 13px;
-            padding: 10px 24px;
-        }
-
-        /* ============ AI CHATBOT - RIGHT SIDE ============ */
+        /* ============ CHATBOT ============ */
         #chatbotToggle {
             position: fixed;
             bottom: 24px;
@@ -2430,9 +2764,6 @@
             background: var(--gold);
             color: #000;
         }
-        .chat-messages .msg .quick-actions button:active {
-            transform: scale(.96);
-        }
 
         .chat-input-wrap {
             display: flex;
@@ -2476,9 +2807,6 @@
         .chat-input-wrap button:hover {
             transform: scale(1.05);
         }
-        .chat-input-wrap button:active {
-            transform: scale(.94);
-        }
         .chat-typing {
             display: none;
             padding: 8px 16px;
@@ -2519,8 +2847,19 @@
         .chat-typing.show {
             display: flex;
         }
+        .chat-recovery-highlight {
+            background: #fbf3e3;
+            border: 1px dashed var(--gold);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin: 6px 0;
+            font-family: var(--serif);
+            font-size: 18px;
+            color: var(--charcoal);
+            text-align: center;
+        }
 
-        /* ============ FLYER MODAL ============ */
+        /* ============ FLYER ============ */
         #flyerModal .modalbox {
             max-width: 640px;
         }
@@ -2602,6 +2941,223 @@
         .flyer-actions .btn-primary {
             flex: 1;
             justify-content: center;
+        }
+        .flyer-share-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .flyer-share-row .share-btn {
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .flyer-share-row .share-btn:hover {
+            transform: translateY(-2px);
+        }
+        .flyer-share-row .share-btn.fb {
+            background: #1877f2;
+            color: #fff;
+        }
+        .flyer-share-row .share-btn.tw {
+            background: #000;
+            color: #fff;
+        }
+        .flyer-share-row .share-btn.wa {
+            background: #25d366;
+            color: #fff;
+        }
+        .flyer-share-row .share-btn.copy {
+            background: var(--black);
+            color: var(--orange);
+        }
+
+        /* ============ SHARE MODAL ============ */
+        #shareModal .modalbox {
+            max-width: 480px;
+        }
+        .share-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .share-options .share-opt {
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid #eee;
+            text-align: center;
+            cursor: pointer;
+            transition: .3s;
+            touch-action: manipulation;
+            background: #fff;
+        }
+        .share-options .share-opt:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-soft);
+            border-color: var(--orange);
+        }
+        .share-options .share-opt .so-icon {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .share-options .share-opt .so-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+        .share-link-box {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 4px 4px 4px 14px;
+            align-items: center;
+        }
+        .share-link-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 12px;
+            font-family: var(--sans);
+            outline: none;
+            padding: 10px 0;
+            min-width: 0;
+        }
+        .share-link-box button {
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: none;
+            background: var(--gold-grad);
+            color: #000;
+            font-weight: 600;
+            font-size: 12px;
+            touch-action: manipulation;
+            flex-shrink: 0;
+        }
+
+        /* ============ FAQ ============ */
+        #faqSection {
+            background: #fcfbf9;
+            padding: 60px 16px;
+        }
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #eee;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: .3s;
+        }
+        .faq-item:hover {
+            border-color: rgba(243, 156, 18, .2);
+        }
+        .faq-item .faq-q {
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            color: var(--charcoal);
+            transition: .2s;
+            touch-action: manipulation;
+        }
+        .faq-item .faq-q:hover {
+            color: var(--gold);
+        }
+        .faq-item .faq-q .faq-icon {
+            font-size: 18px;
+            transition: .3s;
+            flex-shrink: 0;
+        }
+        .faq-item .faq-q .faq-icon.open {
+            transform: rotate(180deg);
+        }
+        .faq-item .faq-a {
+            padding: 0 20px 16px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.7;
+            display: none;
+        }
+        .faq-item .faq-a.open {
+            display: block;
+        }
+        .faq-item .faq-a .faq-admin-actions {
+            margin-top: 8px;
+            display: flex;
+            gap: 6px;
+        }
+        .faq-empty {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .admin-faq-form {
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            border: 1px solid #eee;
+            margin-bottom: 24px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .admin-faq-form .form-row {
+            margin-bottom: 10px;
+        }
+        .admin-faq-form .form-row input,
+        .admin-faq-form .form-row textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: var(--sans);
+            font-size: 13px;
+            outline: none;
+            transition: .2s;
+        }
+        .admin-faq-form .form-row input:focus,
+        .admin-faq-form .form-row textarea:focus {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, .1);
+        }
+
+        /* ============ FLYER SPINNER ============ */
+        .flyer-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(0, 0, 0, .1);
+            border-top-color: #000;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* ============ RESPONSIVE ============ */
@@ -2708,9 +3264,6 @@
             .pm-price-row .now {
                 font-size: 20px;
             }
-            .cart-head h3 {
-                font-size: 16px;
-            }
             #chatbotWindow {
                 bottom: 90px;
                 right: 12px;
@@ -2724,6 +3277,9 @@
                 font-size: 24px;
                 bottom: 20px;
                 right: 20px;
+            }
+            .pm-slider .pm-main-slide {
+                height: 280px;
             }
         }
         @media(max-width:640px) {
@@ -2783,13 +3339,16 @@
             }
             .catrow {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
+                gap: 10px;
             }
             .caticon {
-                font-size: 22px;
+                font-size: 26px;
             }
             .catname {
-                font-size: 10px;
+                font-size: 11px;
+            }
+            .catcard {
+                padding: 18px 8px 14px;
             }
             .bsgrid {
                 grid-template-columns: 1fr 1fr;
@@ -2831,9 +3390,6 @@
             .modalbox {
                 max-height: 96vh;
                 border-radius: 16px 16px 0 0;
-            }
-            .pm-slides img {
-                height: 220px;
             }
             .pm-info {
                 padding: 16px;
@@ -2941,6 +3497,29 @@
                 font-size: 9px;
                 padding: 4px 14px;
             }
+            .faq-item .faq-q {
+                font-size: 13px;
+                padding: 14px 16px;
+            }
+            .faq-item .faq-a {
+                font-size: 12px;
+                padding: 0 16px 14px;
+            }
+            .admin-faq-form {
+                padding: 14px;
+            }
+            .pm-slider .pm-main-slide {
+                height: 220px;
+            }
+            .pm-slider .pm-thumbs .thumb {
+                width: 44px;
+                height: 44px;
+            }
+            .pm-actions button {
+                min-width: 70px;
+                font-size: 12px;
+                padding: 10px 12px;
+            }
         }
         @media(max-width:400px) {
             .catrow {
@@ -2976,37 +3555,13 @@
             .featured-card .f-img {
                 height: 200px;
             }
-        }
-
-        /* flyer download spinner */
-        .flyer-spinner {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(0, 0, 0, .1);
-            border-top-color: #000;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            vertical-align: middle;
-            margin-right: 8px;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
+            .share-options {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
             }
-        }
-
-        /* APP ID recovery highlight in chat */
-        .chat-recovery-highlight {
-            background: #fbf3e3;
-            border: 1px dashed var(--gold);
-            border-radius: 8px;
-            padding: 10px 14px;
-            margin: 6px 0;
-            font-family: var(--serif);
-            font-size: 18px;
-            color: var(--charcoal);
-            text-align: center;
+            .share-options .share-opt {
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -3024,22 +3579,22 @@
                 <div class="bt">Dan Abibi<small>Shopping Complex</small></div>
             </div>
             <div class="navactions" id="navActions">
-                <button class="iconbtn" title="Track order" onclick="navigateTo('track')" aria-label="Track order">📦</button>
-                <button class="iconbtn" title="Cart" onclick="openCart()" aria-label="Cart">🛍️<span class="badge" id="cartCount">0</span></button>
+                <button class="iconbtn" title="Track order" onclick="navigateTo('track')" aria-label="Track order"><i class="fas fa-box"></i></button>
+                <button class="iconbtn" title="Cart" onclick="openCart()" aria-label="Cart"><i class="fas fa-shopping-bag"></i><span class="badge" id="cartCount">0</span></button>
                 <span id="navGuest">
-                    <button class="navbtn textlabel" onclick="navigateTo('login')">Login</button>
-                    <button class="navbtn solid textlabel" onclick="navigateTo('register')">Register</button>
+                    <button class="navbtn textlabel" onclick="navigateTo('login')"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <button class="navbtn solid textlabel" onclick="navigateTo('register')"><i class="fas fa-user-plus"></i> Register</button>
                 </span>
                 <span id="navUser" class="hidden">
                     <div class="nav-user-wrap" onclick="navigateTo('dashboard')" role="button" tabindex="0">
                         <img class="avatar-sm" id="navUserAvatar" src="https://ui-avatars.com/api/?name=U&background=F39C12&color=1A1A1A" alt="avatar">
                         <span class="uemoji">👋</span>
                         <span class="uname" id="navUserName">User</span>
-                        <span class="udrop">▾</span>
+                        <span class="udrop"><i class="fas fa-chevron-down"></i></span>
                     </div>
-                    <button class="navbtn solid textlabel" onclick="logoutUser()" style="padding:6px 12px;font-size:11px;">Logout</button>
+                    <button class="navbtn solid textlabel" onclick="logoutUser()" style="padding:6px 12px;font-size:11px;"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </span>
-                <button id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+                <button id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </nav>
@@ -3050,12 +3605,12 @@
             <div class="meshbg"></div><div class="grain"></div>
             <div class="heroinner container">
                 <div>
-                    <div class="heroeyebrow">✨ Small detail, big impact</div>
+                    <div class="heroeyebrow"><i class="fas fa-sparkles"></i> Small detail, big impact</div>
                     <h1>Furnish your world with <em>imported</em> quality</h1>
                     <p class="sub">DANIBBDANABIBI Homes &amp; Furnitures brings premium furniture, kitchenware, electronics and more to Kano — available for immediate pickup or delivery.</p>
                     <div class="herobtns">
-                        <button class="btn-primary" onclick="scrollToProducts()">Shop the collection →</button>
-                        <button class="btn-ghost" onclick="navigateTo('track')">Track my order</button>
+                        <button class="btn-primary" onclick="scrollToProducts()"><i class="fas fa-arrow-right"></i> Shop the collection</button>
+                        <button class="btn-ghost" onclick="navigateTo('track')"><i class="fas fa-search"></i> Track my order</button>
                     </div>
                     <div class="heroinfo">
                         <div><b id="statProducts">0+</b><span>Products</span></div>
@@ -3074,12 +3629,12 @@
             </div>
         </section>
 
-        <!-- ========== FEATURED SECTION - REDESIGNED ========== -->
+        <!-- ========== FEATURED SECTION ========== -->
         <section id="featuredSection">
             <div class="section-glow"></div>
             <div class="container" style="position:relative;z-index:2;">
                 <div class="featured-header reveal">
-                    <div class="feat-eyebrow">✦ Premium Selection</div>
+                    <div class="feat-eyebrow"><i class="fas fa-star"></i> Premium Selection</div>
                     <h2>Featured <span>This Week</span></h2>
                     <p>Handpicked premium products that elevate your space — curated with care for the discerning home.</p>
                     <div class="gold-line-deco"></div>
@@ -3088,35 +3643,38 @@
             </div>
         </section>
 
+        <!-- ========== CATEGORIES - MODERN & PREMIUM ========== -->
         <section class="section" id="categoriesSection">
             <div class="sectitle-wrap reveal">
-                <div class="eyebrow">Browse</div>
+                <div class="eyebrow"><i class="fas fa-th-large"></i> Browse</div>
                 <h2 class="sectitle">Shop by Category</h2>
                 <p class="secsub">Everything your home needs, curated with care</p>
             </div>
             <div class="catrow container" id="catRow"></div>
         </section>
 
+        <!-- ========== PRODUCTS ========== -->
         <section class="section" id="productsSection" style="background:#fcfbf9;">
             <div class="sectitle-wrap reveal">
-                <div class="eyebrow">Collection</div>
+                <div class="eyebrow"><i class="fas fa-gem"></i> Collection</div>
                 <h2 class="sectitle">Our Products</h2>
                 <p class="secsub">Handpicked, quality-checked, ready to deliver</p>
             </div>
             <div class="searchbar container reveal">
                 <input id="searchInput" type="text" placeholder="Search products..." aria-label="Search products">
-                <button onclick="applySearch()">Search</button>
+                <button onclick="applySearch()"><i class="fas fa-search"></i> Search</button>
             </div>
             <div class="prodgrid container reveal" id="prodGrid"></div>
-            <div class="loadmorewrap"><button class="btn-ghost" style="color:#333;border-color:#ccc" id="loadMoreBtn" onclick="loadMoreProducts()">Load more</button></div>
+            <div class="loadmorewrap"><button class="btn-ghost" style="color:#333;border-color:#ccc" id="loadMoreBtn" onclick="loadMoreProducts()"><i class="fas fa-chevron-down"></i> Load more</button></div>
         </section>
 
+        <!-- ========== BRAND STRIP ========== -->
         <section class="brandstrip">
             <div class="bsgrid container reveal">
-                <div class="bsitem"><b>🚚 Fast Delivery</b><span>Prompt delivery across Kano &amp; beyond</span></div>
-                <div class="bsitem"><b>✅ Verified Quality</b><span>Imported, quality-checked items</span></div>
-                <div class="bsitem"><b>🔒 Secure Orders</b><span>Track every order with a unique order number</span></div>
-                <div class="bsitem"><b>💬 WhatsApp Support</b><span>Direct line to confirm your payment</span></div>
+                <div class="bsitem"><b><i class="fas fa-truck-fast"></i> Fast Delivery</b><span>Prompt delivery across Kano &amp; beyond</span></div>
+                <div class="bsitem"><b><i class="fas fa-check-circle"></i> Verified Quality</b><span>Imported, quality-checked items</span></div>
+                <div class="bsitem"><b><i class="fas fa-lock"></i> Secure Orders</b><span>Track every order with a unique order number</span></div>
+                <div class="bsitem"><b><i class="fab fa-whatsapp"></i> WhatsApp Support</b><span>Direct line to confirm your payment</span></div>
             </div>
         </section>
     </div>
@@ -3126,13 +3684,13 @@
         <div class="authwrap">
             <div class="authcard" style="max-width:600px;">
                 <div class="authlogo"><img src="https://i.postimg.cc/dQNDT7Sg/Chat-GPT-Image-Jul-7-2026-12-39-54-AM.png"></div>
-                <h2>Track Your Order</h2>
+                <h2><i class="fas fa-box-open"></i> Track Your Order</h2>
                 <p class="sub">Enter your order number to see live status</p>
                 <div class="form-row">
-                    <label>Order Number</label>
+                    <label><i class="fas fa-hashtag"></i> Order Number</label>
                     <input type="text" id="trackOrderInput" placeholder="e.g DAB-482913" aria-label="Order number">
                 </div>
-                <button class="btn-primary" style="width:100%" onclick="trackOrder()">Check Status</button>
+                <button class="btn-primary" style="width:100%" onclick="trackOrder()"><i class="fas fa-search"></i> Check Status</button>
                 <div id="trackResult" style="margin-top:22px;"></div>
             </div>
         </div>
@@ -3143,7 +3701,7 @@
         <div class="authwrap">
             <div class="authcard">
                 <div class="authlogo"><img src="https://i.postimg.cc/dQNDT7Sg/Chat-GPT-Image-Jul-7-2026-12-39-54-AM.png"></div>
-                <h2>Create Your Account</h2>
+                <h2><i class="fas fa-user-plus"></i> Create Your Account</h2>
                 <p class="sub">Join Dan Abibi Notifications</p>
                 <ul class="benefitlist">
                     <li>Track all your orders in one dashboard</li>
@@ -3157,19 +3715,19 @@
                     <div class="stepdot" data-s="3">3</div>
                 </div>
                 <div id="regStep1">
-                    <div class="form-row"><label>Full Name</label><input id="regName" type="text" placeholder="Your full name"></div>
-                    <div class="form-row"><label>Phone Number</label><input id="regPhone" type="tel" placeholder="080..."></div>
-                    <button class="btn-primary" style="width:100%" onclick="regNext(2)">Continue →</button>
+                    <div class="form-row"><label><i class="fas fa-user"></i> Full Name</label><input id="regName" type="text" placeholder="Your full name"></div>
+                    <div class="form-row"><label><i class="fas fa-phone"></i> Phone Number</label><input id="regPhone" type="tel" placeholder="080..."></div>
+                    <button class="btn-primary" style="width:100%" onclick="regNext(2)">Continue <i class="fas fa-arrow-right"></i></button>
                 </div>
                 <div id="regStep2" class="hidden">
-                    <div class="form-row"><label>Email (optional)</label><input id="regEmail" type="email" placeholder="you@email.com"></div>
-                    <div class="form-row"><label>Address</label><textarea id="regAddress" rows="2" placeholder="Delivery address"></textarea></div>
-                    <button class="btn-primary" style="width:100%" onclick="regNext(3)">Continue →</button>
+                    <div class="form-row"><label><i class="fas fa-envelope"></i> Email (optional)</label><input id="regEmail" type="email" placeholder="you@email.com"></div>
+                    <div class="form-row"><label><i class="fas fa-map-marker-alt"></i> Address</label><textarea id="regAddress" rows="2" placeholder="Delivery address"></textarea></div>
+                    <button class="btn-primary" style="width:100%" onclick="regNext(3)">Continue <i class="fas fa-arrow-right"></i></button>
                 </div>
                 <div id="regStep3" class="hidden">
-                    <div class="form-row"><label>Create Password</label><input id="regPassword" type="password" placeholder="Minimum 4 characters"></div>
-                    <div class="form-row"><label>Confirm Password</label><input id="regPassword2" type="password" placeholder="Re-enter password"></div>
-                    <button class="btn-primary" style="width:100%" onclick="submitRegistration()">Create Account</button>
+                    <div class="form-row"><label><i class="fas fa-lock"></i> Create Password</label><input id="regPassword" type="password" placeholder="Minimum 4 characters"></div>
+                    <div class="form-row"><label><i class="fas fa-lock"></i> Confirm Password</label><input id="regPassword2" type="password" placeholder="Re-enter password"></div>
+                    <button class="btn-primary" style="width:100%" onclick="submitRegistration()"><i class="fas fa-check"></i> Create Account</button>
                 </div>
                 <div class="authswitch">Already have an account? <a onclick="navigateTo('login')">Login</a></div>
             </div>
@@ -3181,13 +3739,13 @@
         <div class="authwrap">
             <div class="authcard">
                 <div class="authlogo"><img src="https://i.postimg.cc/dQNDT7Sg/Chat-GPT-Image-Jul-7-2026-12-39-54-AM.png"></div>
-                <h2>Welcome Back</h2>
+                <h2><i class="fas fa-sign-in-alt"></i> Welcome Back</h2>
                 <p class="sub">Login with your APP ID</p>
-                <div class="form-row"><label>APP ID</label><input id="loginAppId" type="text" placeholder="e.g DAB-USER-4821"></div>
-                <div class="form-row"><label>Password</label><input id="loginPassword" type="password" placeholder="Your password"></div>
-                <button class="btn-primary" style="width:100%" onclick="loginUser()">Login</button>
+                <div class="form-row"><label><i class="fas fa-id-card"></i> APP ID</label><input id="loginAppId" type="text" placeholder="e.g DAB-USER-4821"></div>
+                <div class="form-row"><label><i class="fas fa-lock"></i> Password</label><input id="loginPassword" type="password" placeholder="Your password"></div>
+                <button class="btn-primary" style="width:100%" onclick="loginUser()"><i class="fas fa-sign-in-alt"></i> Login</button>
                 <div class="authswitch">New here? <a onclick="navigateTo('register')">Create an account</a></div>
-                <div class="authswitch"><a onclick="navigateTo('adminLogin')" style="color:#999">Admin login →</a></div>
+                <div class="authswitch"><a onclick="navigateTo('adminLogin')" style="color:#999"><i class="fas fa-user-shield"></i> Admin login →</a></div>
             </div>
         </div>
     </div>
@@ -3197,12 +3755,12 @@
         <div class="authwrap" style="background:linear-gradient(180deg,#1a1a1a,#2a2a2a)">
             <div class="authcard" style="background:#232323; border-color:#333;">
                 <div class="authlogo"><img src="https://i.postimg.cc/dQNDT7Sg/Chat-GPT-Image-Jul-7-2026-12-39-54-AM.png"></div>
-                <h2 style="color:#fff">Admin Access</h2>
+                <h2 style="color:#fff"><i class="fas fa-user-shield"></i> Admin Access</h2>
                 <p class="sub" style="color:#999">Authorized personnel only</p>
-                <div class="form-row"><label style="color:#ccc">Email</label><input id="adminEmail" type="email" placeholder="admin@danabibi.com"></div>
-                <div class="form-row"><label style="color:#ccc">Password</label><input id="adminPassword" type="password" placeholder="Password"></div>
-                <button class="btn-primary" style="width:100%" onclick="loginAdmin()">Login as Admin</button>
-                <div class="authswitch"><a onclick="navigateTo('login')" style="color:#999">← Back to shop login</a></div>
+                <div class="form-row"><label style="color:#ccc"><i class="fas fa-envelope"></i> Email</label><input id="adminEmail" type="email" placeholder="admin@danabibi.com"></div>
+                <div class="form-row"><label style="color:#ccc"><i class="fas fa-lock"></i> Password</label><input id="adminPassword" type="password" placeholder="Password"></div>
+                <button class="btn-primary" style="width:100%" onclick="loginAdmin()"><i class="fas fa-sign-in-alt"></i> Login as Admin</button>
+                <div class="authswitch"><a onclick="navigateTo('login')" style="color:#999"><i class="fas fa-arrow-left"></i> Back to shop login</a></div>
             </div>
         </div>
     </div>
@@ -3216,36 +3774,36 @@
                     <div><b id="dashUserName">User</b><small id="dashUserId">DAB-USER-0000</small></div>
                 </div>
                 <nav class="sidenav" id="userSideNav">
-                    <a data-tab="overview" class="active" onclick="switchUserTab('overview')">📊 Overview</a>
-                    <a data-tab="orders" onclick="switchUserTab('orders')">🧾 My Orders</a>
-                    <a data-tab="history" onclick="switchUserTab('history')">🕘 History</a>
-                    <a data-tab="alerts" onclick="switchUserTab('alerts')">🔔 New Products</a>
-                    <a onclick="logoutUser()">🚪 Logout</a>
+                    <a data-tab="overview" class="active" onclick="switchUserTab('overview')"><i class="fas fa-chart-pie"></i> Overview</a>
+                    <a data-tab="orders" onclick="switchUserTab('orders')"><i class="fas fa-list"></i> My Orders</a>
+                    <a data-tab="history" onclick="switchUserTab('history')"><i class="fas fa-history"></i> History</a>
+                    <a data-tab="alerts" onclick="switchUserTab('alerts')"><i class="fas fa-bell"></i> New Products</a>
+                    <a onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </nav>
             </aside>
             <main class="dashmain">
                 <div id="userTab-overview">
-                    <div class="dashtop"><h2 class="serif" style="margin:0">Welcome back 👋</h2></div>
+                    <div class="dashtop"><h2 class="serif" style="margin:0">Welcome back <i class="fas fa-hand-wave"></i></h2></div>
                     <div class="statcards">
-                        <div class="statcard"><b id="u-stat-total">0</b><span>Total Orders</span></div>
-                        <div class="statcard"><b id="u-stat-pending">0</b><span>Pending</span></div>
-                        <div class="statcard"><b id="u-stat-paid">0</b><span>Paid</span></div>
-                        <div class="statcard"><b id="u-stat-delivered">0</b><span>Delivered</span></div>
+                        <div class="statcard"><b id="u-stat-total">0</b><span><i class="fas fa-shopping-bag"></i> Total Orders</span></div>
+                        <div class="statcard"><b id="u-stat-pending">0</b><span><i class="fas fa-clock"></i> Pending</span></div>
+                        <div class="statcard"><b id="u-stat-paid">0</b><span><i class="fas fa-check-circle"></i> Paid</span></div>
+                        <div class="statcard"><b id="u-stat-delivered">0</b><span><i class="fas fa-truck"></i> Delivered</span></div>
                     </div>
                     <div class="chartbox"><canvas id="userChart" height="90"></canvas></div>
-                    <h3 class="serif">Pending Order Progress</h3>
+                    <h3 class="serif"><i class="fas fa-hourglass-half"></i> Pending Order Progress</h3>
                     <div id="userPendingProgress"></div>
                 </div>
                 <div id="userTab-orders" class="hidden">
-                    <h2 class="serif">My Orders</h2>
+                    <h2 class="serif"><i class="fas fa-list"></i> My Orders</h2>
                     <div class="tablewrap"><table class="dashtable" id="userOrdersTable"><thead><tr><th>Order No</th><th>Items</th><th>Total</th><th>Status</th><th>Payment</th><th>Action</th></tr></thead><tbody></tbody></table></div>
                 </div>
                 <div id="userTab-history" class="hidden">
-                    <h2 class="serif">Order History</h2>
+                    <h2 class="serif"><i class="fas fa-history"></i> Order History</h2>
                     <div class="tablewrap"><table class="dashtable" id="userHistoryTable"><thead><tr><th>Order No</th><th>Date</th><th>Total</th><th>Status</th></tr></thead><tbody></tbody></table></div>
                 </div>
                 <div id="userTab-alerts" class="hidden">
-                    <h2 class="serif">New Product Alerts</h2>
+                    <h2 class="serif"><i class="fas fa-bell"></i> New Product Alerts</h2>
                     <div class="prodgrid" id="userAlertGrid" style="grid-template-columns:repeat(3,1fr)"></div>
                 </div>
             </main>
@@ -3258,72 +3816,98 @@
             <aside class="sidebar">
                 <div class="userinfo">
                     <img src="https://ui-avatars.com/api/?name=Admin&background=1A1A1A&color=F39C12" alt="">
-                    <div><b>Admin Panel</b><small class="adminbadge">Super Admin</small></div>
+                    <div><b>Admin Panel</b><small class="adminbadge"><i class="fas fa-crown"></i> Super Admin</small></div>
                 </div>
                 <nav class="sidenav">
-                    <a data-tab="overview" class="active" onclick="switchAdminTab('overview')">📊 Overview</a>
-                    <a data-tab="orders" onclick="switchAdminTab('orders')">🧾 Orders</a>
-                    <a data-tab="products" onclick="switchAdminTab('products')">📦 Products</a>
-                    <a data-tab="categories" onclick="switchAdminTab('categories')">🗂️ Categories</a>
-                    <a data-tab="users" onclick="switchAdminTab('users')">👥 Users</a>
-                    <a data-tab="featured" onclick="switchAdminTab('featured')">⭐ Featured</a>
-                    <a onclick="logoutAdmin()">🚪 Logout</a>
+                    <a data-tab="overview" class="active" onclick="switchAdminTab('overview')"><i class="fas fa-chart-pie"></i> Overview</a>
+                    <a data-tab="orders" onclick="switchAdminTab('orders')"><i class="fas fa-list"></i> Orders</a>
+                    <a data-tab="products" onclick="switchAdminTab('products')"><i class="fas fa-boxes"></i> Products</a>
+                    <a data-tab="categories" onclick="switchAdminTab('categories')"><i class="fas fa-th-large"></i> Categories</a>
+                    <a data-tab="users" onclick="switchAdminTab('users')"><i class="fas fa-users"></i> Users</a>
+                    <a data-tab="featured" onclick="switchAdminTab('featured')"><i class="fas fa-star"></i> Featured</a>
+                    <a data-tab="faq" onclick="switchAdminTab('faq')"><i class="fas fa-question-circle"></i> FAQ</a>
+                    <a onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </nav>
             </aside>
             <main class="dashmain">
                 <div id="adminTab-overview">
-                    <h2 class="serif">Admin Overview</h2>
+                    <h2 class="serif"><i class="fas fa-chart-pie"></i> Admin Overview</h2>
                     <div class="statcards">
-                        <div class="statcard"><b id="a-stat-orders">0</b><span>Total Orders</span></div>
-                        <div class="statcard"><b id="a-stat-pending">0</b><span>Unpaid</span></div>
-                        <div class="statcard"><b id="a-stat-revenue">₦0</b><span>Revenue (Paid)</span></div>
-                        <div class="statcard"><b id="a-stat-products">0</b><span>Products</span></div>
+                        <div class="statcard"><b id="a-stat-orders">0</b><span><i class="fas fa-shopping-bag"></i> Total Orders</span></div>
+                        <div class="statcard"><b id="a-stat-pending">0</b><span><i class="fas fa-clock"></i> Unpaid</span></div>
+                        <div class="statcard"><b id="a-stat-revenue">₦0</b><span><i class="fas fa-money-bill-wave"></i> Revenue (Paid)</span></div>
+                        <div class="statcard"><b id="a-stat-products">0</b><span><i class="fas fa-boxes"></i> Products</span></div>
                     </div>
                     <div class="chartbox"><canvas id="adminChart" height="90"></canvas></div>
                 </div>
                 <div id="adminTab-orders" class="hidden">
-                    <div class="dashtop"><h2 class="serif" style="margin:0">All Orders</h2></div>
+                    <div class="dashtop"><h2 class="serif" style="margin:0"><i class="fas fa-list"></i> All Orders</h2></div>
                     <div class="tablewrap"><table class="dashtable" id="adminOrdersTable"><thead><tr><th>Order No</th><th>Buyer</th><th>Total</th><th>Payment</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
                 </div>
                 <div id="adminTab-products" class="hidden">
-                    <div class="dashtop"><h2 class="serif" style="margin:0">Products</h2><button class="btn-primary" onclick="openProductForm()">+ Add Product</button></div>
+                    <div class="dashtop"><h2 class="serif" style="margin:0"><i class="fas fa-boxes"></i> Products</h2><button class="btn-primary" onclick="openProductForm()"><i class="fas fa-plus"></i> Add Product</button></div>
                     <div class="tablewrap"><table class="dashtable" id="adminProductsTable"><thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Discount</th><th>Featured</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
                 </div>
                 <div id="adminTab-categories" class="hidden">
-                    <div class="dashtop"><h2 class="serif" style="margin:0">Categories</h2></div>
+                    <div class="dashtop"><h2 class="serif" style="margin:0"><i class="fas fa-th-large"></i> Categories</h2></div>
                     <div class="form-grid2" style="max-width:500px; margin-bottom:16px;">
                         <input id="newCatName" placeholder="Category name" class="form-row" style="padding:12px 14px;border:1px solid #ddd;border-radius:10px;">
                         <input id="newCatIcon" placeholder="Emoji icon e.g 🛋️" style="padding:12px 14px;border:1px solid #ddd;border-radius:10px;">
                     </div>
-                    <button class="btn-primary" onclick="addCategory()">+ Add Category</button>
+                    <button class="btn-primary" onclick="addCategory()"><i class="fas fa-plus"></i> Add Category</button>
                     <div class="tablewrap" style="margin-top:16px;"><table class="dashtable" id="adminCatsTable"><thead><tr><th>Icon</th><th>Name</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
                 </div>
                 <div id="adminTab-users" class="hidden">
-                    <h2 class="serif">Registered Users</h2>
+                    <h2 class="serif"><i class="fas fa-users"></i> Registered Users</h2>
                     <div class="tablewrap"><table class="dashtable" id="adminUsersTable"><thead><tr><th>APP ID</th><th>Name</th><th>Phone</th><th>Orders</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
                 </div>
                 <div id="adminTab-featured" class="hidden">
-                    <h2 class="serif">Manage Featured Products</h2>
+                    <h2 class="serif"><i class="fas fa-star"></i> Manage Featured Products</h2>
                     <p class="secsub">Toggle featured status for products to show them on the homepage</p>
                     <div class="tablewrap"><table class="dashtable" id="adminFeaturedTable"><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Featured</th><th>Action</th></tr></thead><tbody></tbody></table></div>
+                </div>
+                <div id="adminTab-faq" class="hidden">
+                    <h2 class="serif"><i class="fas fa-question-circle"></i> Manage FAQ</h2>
+                    <p class="secsub">Add, edit or remove frequently asked questions</p>
+                    <div class="admin-faq-form">
+                        <h4 style="margin:0 0 10px;font-family:var(--serif);"><i class="fas fa-plus-circle"></i> Add New FAQ</h4>
+                        <input type="hidden" id="faqEditId">
+                        <div class="form-row"><label>Question</label><input id="faqQuestion" type="text" placeholder="Enter question..."></div>
+                        <div class="form-row"><label>Answer</label><textarea id="faqAnswer" rows="2" placeholder="Enter answer..."></textarea></div>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                            <button class="btn-primary" onclick="saveFaq()" style="font-size:13px;padding:10px 24px;"><i class="fas fa-plus"></i> Add FAQ</button>
+                            <button class="btn-ghost" style="color:#333;border-color:#ccc;font-size:13px;padding:10px 24px;" onclick="cancelFaqEdit()"><i class="fas fa-times"></i> Cancel</button>
+                        </div>
+                    </div>
+                    <div class="tablewrap"><table class="dashtable" id="adminFaqTable"><thead><tr><th>Question</th><th>Answer</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- ================= PRODUCT MODAL ================= -->
+    <!-- ================= PRODUCT MODAL - MODERN GALLERY ================= -->
     <div class="modaloverlay" id="productModal">
         <div class="modalbox">
-            <button class="modalclose" onclick="closeModal('productModal')">✕</button>
+            <button class="modalclose" onclick="closeModal('productModal')"><i class="fas fa-times"></i></button>
             <div class="pm-grid">
                 <div class="pm-slider">
-                    <div class="pm-slides" id="pmSlides"></div>
-                    <div class="pm-dots" id="pmDots"></div>
+                    <div class="pm-main-slide" id="pmMainSlide">
+                        <img id="pmMainImg" src="" alt="Product image">
+                        <span class="pm-badge" id="pmFeaturedBadge"><i class="fas fa-star"></i> PREMIUM</span>
+                        <span class="pm-badge-discount" id="pmDiscountBadge" style="display:none;">-0% OFF</span>
+                    </div>
+                    <button class="pm-nav prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="pm-nav next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="pm-thumbs" id="pmThumbs"></div>
                 </div>
                 <div class="pm-info">
                     <div class="pm-cat" id="pmCat">Category</div>
                     <h3 class="pm-title" id="pmTitle">Product name</h3>
-                    <div class="pm-rating"><span class="stars" id="pmStars">★★★★★</span> <span id="pmRatingNum">4.8</span> · <span id="pmBuyersCount">120 sold</span></div>
+                    <div class="pm-rating" id="pmRatingDisplay">
+                        <span class="stars" id="pmStars"></span>
+                        <span id="pmRatingNum">4.8</span>
+                        <span class="rating-count" id="pmRatingCount">(0 ratings)</span>
+                    </div>
                     <div class="pm-price-row">
                         <span class="now" id="pmPrice">₦0</span>
                         <span class="was hidden" id="pmWas">₦0</span>
@@ -3331,16 +3915,81 @@
                     </div>
                     <p class="pm-desc" id="pmDesc">Description...</p>
                     <div class="pm-buyers"><div class="avatars" id="pmAvatars"></div><small id="pmBuyersText">Recently purchased by others</small></div>
+
+                    <!-- Rating Section -->
+                    <div class="pm-rating-section">
+                        <span class="rate-label"><i class="fas fa-star"></i> Rate this product</span>
+                        <div class="star-input" id="starInput">
+                            <span data-v="1" onclick="setRating(1)">☆</span>
+                            <span data-v="2" onclick="setRating(2)">☆</span>
+                            <span data-v="3" onclick="setRating(3)">☆</span>
+                            <span data-v="4" onclick="setRating(4)">☆</span>
+                            <span data-v="5" onclick="setRating(5)">☆</span>
+                        </div>
+                        <div class="rating-msg" id="ratingMsg">Click a star to rate</div>
+                    </div>
+
+                    <!-- Feedback Section -->
+                    <div class="pm-feedback-section">
+                        <span class="fb-label"><i class="fas fa-comment"></i> Share your feedback</span>
+                        <textarea id="fbInput" placeholder="Write your feedback about this product..."></textarea>
+                        <div class="fb-actions">
+                            <button class="btn-sm gold" onclick="submitFeedback()"><i class="fas fa-paper-plane"></i> Post Feedback</button>
+                            <button class="btn-sm outline" onclick="clearFeedback()"><i class="fas fa-eraser"></i> Clear</button>
+                        </div>
+                        <div class="fb-list" id="fbList">
+                            <div class="fb-empty">No feedback yet. Be the first to share!</div>
+                        </div>
+                    </div>
+
                     <div class="qtyrow">
-                        <span>Quantity</span>
+                        <span><i class="fas fa-cubes"></i> Quantity</span>
                         <button class="qtybtn" onclick="changeQty(-1)">−</button>
                         <span class="qtyval" id="pmQty">1</span>
                         <button class="qtybtn" onclick="changeQty(1)">+</button>
                     </div>
                     <div class="pm-actions">
-                        <button class="btn-primary" style="flex:1" onclick="addToCartFromModal()">Add to Cart</button>
-                        <button class="btn-ghost" style="color:#333;border-color:#ccc;flex:0.6" onclick="openFlyerFromModal()">📄 Flyer</button>
+                        <button class="btn-primary" style="flex:1" onclick="addToCartFromModal()"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="btn-ghost" style="color:#333;border-color:#ccc;flex:0.6" onclick="openFlyerFromModal()"><i class="fas fa-file-pdf"></i> Flyer</button>
+                        <button class="btn-ghost" style="color:#25d366;border-color:#25d366;flex:0.6" onclick="askViaWhatsApp()"><i class="fab fa-whatsapp"></i> Ask</button>
+                        <button class="btn-ghost" style="color:#1877f2;border-color:#1877f2;flex:0.6" onclick="openShareModal()"><i class="fas fa-share-alt"></i> Share</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SHARE MODAL ================= -->
+    <div class="modaloverlay" id="shareModal">
+        <div class="modalbox" style="max-width:480px;">
+            <button class="modalclose" onclick="closeModal('shareModal')"><i class="fas fa-times"></i></button>
+            <div style="padding:28px;">
+                <h2 class="serif" style="margin-top:0;"><i class="fas fa-share-alt"></i> Share this product</h2>
+                <p class="secsub">Share with friends and family</p>
+                <div class="share-options">
+                    <div class="share-opt" onclick="shareVia('facebook')">
+                        <span class="so-icon"><i class="fab fa-facebook-square"></i></span>
+                        <span class="so-label">Facebook</span>
+                    </div>
+                    <div class="share-opt" onclick="shareVia('twitter')">
+                        <span class="so-icon"><i class="fab fa-twitter"></i></span>
+                        <span class="so-label">Twitter</span>
+                    </div>
+                    <div class="share-opt" onclick="shareVia('whatsapp')">
+                        <span class="so-icon"><i class="fab fa-whatsapp"></i></span>
+                        <span class="so-label">WhatsApp</span>
+                    </div>
+                    <div class="share-opt" onclick="shareVia('copy')">
+                        <span class="so-icon"><i class="fas fa-link"></i></span>
+                        <span class="so-label">Copy Link</span>
+                    </div>
+                </div>
+                <div class="share-link-box">
+                    <input type="text" id="shareLinkInput" readonly value="">
+                    <button onclick="shareVia('copy')"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <div style="margin-top:12px;text-align:center;">
+                    <button class="btn-ghost" style="color:#333;border-color:#ccc;width:100%;" onclick="closeModal('shareModal')"><i class="fas fa-times"></i> Close</button>
                 </div>
             </div>
         </div>
@@ -3349,11 +3998,11 @@
     <!-- ================= CART MODAL ================= -->
     <div class="modaloverlay" id="cartOverlay">
         <div class="modalbox">
-            <div class="cart-head"><h3>Your Cart</h3><button class="modalclose" style="position:static" onclick="closeModal('cartOverlay')">✕</button></div>
+            <div class="cart-head"><h3><i class="fas fa-shopping-bag"></i> Your Cart</h3><button class="modalclose" style="position:static" onclick="closeModal('cartOverlay')"><i class="fas fa-times"></i></button></div>
             <div class="cart-items" id="cartItemsWrap"></div>
             <div class="cart-foot">
-                <div class="cart-total-row"><span>Total</span><span id="cartTotal">₦0</span></div>
-                <button class="btn-primary" style="width:100%" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                <div class="cart-total-row"><span><i class="fas fa-calculator"></i> Total</span><span id="cartTotal">₦0</span></div>
+                <button class="btn-primary" style="width:100%" onclick="proceedToCheckout()"><i class="fas fa-arrow-right"></i> Proceed to Checkout</button>
             </div>
         </div>
     </div>
@@ -3361,17 +4010,17 @@
     <!-- ================= CHECKOUT MODAL ================= -->
     <div class="modaloverlay" id="checkoutModal">
         <div class="modalbox" style="max-width:560px;">
-            <button class="modalclose" onclick="closeModal('checkoutModal')">✕</button>
+            <button class="modalclose" onclick="closeModal('checkoutModal')"><i class="fas fa-times"></i></button>
             <div style="padding:26px;">
-                <h2 class="serif" style="margin-top:0">Buyer Information</h2>
+                <h2 class="serif" style="margin-top:0"><i class="fas fa-address-card"></i> Buyer Information</h2>
                 <p class="secsub" style="margin-bottom:16px;">Tell us where to send your order</p>
                 <div class="form-grid2">
-                    <div class="form-row"><label>Full Name</label><input id="coName" type="text" placeholder="Your name"></div>
-                    <div class="form-row"><label>Phone Number</label><input id="coPhone" type="tel" placeholder="080..."></div>
+                    <div class="form-row"><label><i class="fas fa-user"></i> Full Name</label><input id="coName" type="text" placeholder="Your name"></div>
+                    <div class="form-row"><label><i class="fas fa-phone"></i> Phone Number</label><input id="coPhone" type="tel" placeholder="080..."></div>
                 </div>
-                <div class="form-row"><label>Delivery Address</label><textarea id="coAddress" rows="2" placeholder="Full address"></textarea></div>
-                <div class="form-row"><label>Order Note (optional)</label><textarea id="coNote" rows="2" placeholder="Any special instruction"></textarea></div>
-                <button class="btn-primary" style="width:100%" onclick="submitOrder()">Place Order</button>
+                <div class="form-row"><label><i class="fas fa-map-marker-alt"></i> Delivery Address</label><textarea id="coAddress" rows="2" placeholder="Full address"></textarea></div>
+                <div class="form-row"><label><i class="fas fa-pen"></i> Order Note (optional)</label><textarea id="coNote" rows="2" placeholder="Any special instruction"></textarea></div>
+                <button class="btn-primary" style="width:100%" onclick="submitOrder()"><i class="fas fa-check"></i> Place Order</button>
             </div>
         </div>
     </div>
@@ -3379,25 +4028,25 @@
     <!-- ================= SUCCESS MODAL ================= -->
     <div class="modaloverlay" id="successModal">
         <div class="modalbox" style="max-width:480px;">
-            <button class="modalclose" onclick="closeModal('successModal')">✕</button>
+            <button class="modalclose" onclick="closeModal('successModal')"><i class="fas fa-times"></i></button>
             <div style="padding:30px; text-align:center;">
-                <div class="success-icon">✓</div>
+                <div class="success-icon"><i class="fas fa-check"></i></div>
                 <h2 class="serif" style="margin:0 0 6px;">Order Placed!</h2>
                 <p class="secsub">Your order has been received successfully</p>
                 <div class="orderno-box">
                     <b id="successOrderNo">DAB-000000</b>
-                    <button class="copybtn" onclick="copyOrderNo()">Copy</button>
+                    <button class="copybtn" onclick="copyOrderNo()"><i class="fas fa-copy"></i> Copy</button>
                 </div>
-                <button class="btn-primary" style="width:100%; margin-bottom:8px;" onclick="payViaWhatsapp()">💬 Make Payment via WhatsApp</button>
-                <button class="btn-ghost" style="width:100%; color:#333; border-color:#ccc; margin-bottom:8px;" onclick="printCurrentInvoice()">🖨️ Print Invoice</button>
+                <button class="btn-primary" style="width:100%; margin-bottom:8px;" onclick="payViaWhatsapp()"><i class="fab fa-whatsapp"></i> Make Payment via WhatsApp</button>
+                <button class="btn-ghost" style="width:100%; color:#333; border-color:#ccc; margin-bottom:8px;" onclick="printCurrentInvoice()"><i class="fas fa-print"></i> Print Invoice</button>
                 <div id="regPromptBox" style="margin-top:14px; background:#fbf3e3; border-radius:14px; padding:16px; text-align:left;">
-                    <b style="font-family:var(--serif);">Get Dan Abibi Notifications 🔔</b>
+                    <b style="font-family:var(--serif);"><i class="fas fa-bell"></i> Get Dan Abibi Notifications 🔔</b>
                     <ul class="benefitlist" style="margin:8px 0;">
                         <li>Track this order anytime</li>
                         <li>Know when it's delivered</li>
                         <li>Be first to see new arrivals</li>
                     </ul>
-                    <button class="btn-primary" style="width:100%" onclick="closeModal('successModal'); navigateTo('register')">Register Now</button>
+                    <button class="btn-primary" style="width:100%" onclick="closeModal('successModal'); navigateTo('register')"><i class="fas fa-user-plus"></i> Register Now</button>
                 </div>
             </div>
         </div>
@@ -3406,27 +4055,27 @@
     <!-- ================= PRODUCT FORM MODAL (admin) ================= -->
     <div class="modaloverlay" id="productFormModal">
         <div class="modalbox" style="max-width:560px;">
-            <button class="modalclose" onclick="closeModal('productFormModal')">✕</button>
+            <button class="modalclose" onclick="closeModal('productFormModal')"><i class="fas fa-times"></i></button>
             <div style="padding:26px;">
-                <h2 class="serif" id="pfTitle" style="margin-top:0">Add Product</h2>
+                <h2 class="serif" id="pfTitle" style="margin-top:0"><i class="fas fa-box"></i> Add Product</h2>
                 <input type="hidden" id="pfId">
-                <div class="form-row"><label>Product Name</label><input id="pfName" type="text"></div>
+                <div class="form-row"><label><i class="fas fa-tag"></i> Product Name</label><input id="pfName" type="text"></div>
                 <div class="form-grid2">
-                    <div class="form-row"><label>Category</label><select id="pfCategory"></select></div>
-                    <div class="form-row"><label>Price (₦)</label><input id="pfPrice" type="number"></div>
+                    <div class="form-row"><label><i class="fas fa-th-large"></i> Category</label><select id="pfCategory"></select></div>
+                    <div class="form-row"><label><i class="fas fa-money-bill-wave"></i> Price (₦)</label><input id="pfPrice" type="number"></div>
                 </div>
                 <div class="form-grid2">
-                    <div class="form-row"><label>Discount (%)</label><input id="pfDiscount" type="number" value="0"></div>
-                    <div class="form-row"><label>Rating (0-5)</label><input id="pfRating" type="number" step="0.1" value="4.8"></div>
+                    <div class="form-row"><label><i class="fas fa-percent"></i> Discount (%)</label><input id="pfDiscount" type="number" value="0"></div>
+                    <div class="form-row"><label><i class="fas fa-star"></i> Rating (0-5)</label><input id="pfRating" type="number" step="0.1" value="4.8"></div>
                 </div>
-                <div class="form-row"><label>Image URLs (comma-separated)</label><textarea id="pfImages" rows="2" placeholder="https://... , https://..."></textarea></div>
-                <div class="form-row"><label>Description</label><textarea id="pfDesc" rows="3"></textarea></div>
+                <div class="form-row"><label><i class="fas fa-images"></i> Image URLs (comma-separated)</label><textarea id="pfImages" rows="2" placeholder="https://... , https://..."></textarea></div>
+                <div class="form-row"><label><i class="fas fa-align-left"></i> Description</label><textarea id="pfDesc" rows="3"></textarea></div>
                 <div class="form-grid2">
-                    <div class="form-row"><label>Buyers Count</label><input id="pfBuyers" type="number" value="0"></div>
-                    <div class="form-row"><label>Mark as New</label><select id="pfNew"><option value="false">No</option><option value="true">Yes</option></select></div>
+                    <div class="form-row"><label><i class="fas fa-users"></i> Buyers Count</label><input id="pfBuyers" type="number" value="0"></div>
+                    <div class="form-row"><label><i class="fas fa-tag"></i> Mark as New</label><select id="pfNew"><option value="false">No</option><option value="true">Yes</option></select></div>
                 </div>
-                <div class="form-row"><label>Featured</label><select id="pfFeatured"><option value="false">No</option><option value="true">Yes (show on homepage)</option></select></div>
-                <button class="btn-primary" style="width:100%" onclick="saveProduct()">Save Product</button>
+                <div class="form-row"><label><i class="fas fa-star"></i> Featured</label><select id="pfFeatured"><option value="false">No</option><option value="true">Yes (show on homepage)</option></select></div>
+                <button class="btn-primary" style="width:100%" onclick="saveProduct()"><i class="fas fa-save"></i> Save Product</button>
             </div>
         </div>
     </div>
@@ -3434,13 +4083,22 @@
     <!-- ================= FLYER MODAL ================= -->
     <div class="modaloverlay" id="flyerModal">
         <div class="modalbox" style="max-width:640px;">
-            <button class="modalclose" onclick="closeModal('flyerModal')">✕</button>
+            <button class="modalclose" onclick="closeModal('flyerModal')"><i class="fas fa-times"></i></button>
             <div style="padding:24px;" id="flyerContent">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
-                    <h2 class="serif" style="margin:0;">✨ Product Flyer</h2>
-                    <button class="btn-primary" onclick="downloadFlyer()" style="font-size:13px;padding:10px 20px;">⬇️ Download Flyer</button>
+                    <h2 class="serif" style="margin:0;"><i class="fas fa-file-pdf"></i> Product Flyer</h2>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                        <button class="btn-primary" onclick="downloadFlyer()" style="font-size:13px;padding:10px 20px;"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn-ghost" style="color:#1877f2;border-color:#1877f2;font-size:13px;padding:10px 20px;" onclick="shareFlyer()"><i class="fas fa-share-alt"></i> Share</button>
+                    </div>
                 </div>
                 <div id="flyerPreview" class="flyer-preview"></div>
+                <div class="flyer-share-row">
+                    <button class="share-btn fb" onclick="shareFlyerVia('facebook')"><i class="fab fa-facebook-square"></i> Facebook</button>
+                    <button class="share-btn tw" onclick="shareFlyerVia('twitter')"><i class="fab fa-twitter"></i> Twitter</button>
+                    <button class="share-btn wa" onclick="shareFlyerVia('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    <button class="share-btn copy" onclick="shareFlyerVia('copy')"><i class="fas fa-link"></i> Copy</button>
+                </div>
             </div>
         </div>
     </div>
@@ -3450,26 +4108,26 @@
         <div class="inv-page" id="invoiceContent"></div>
     </div>
 
-    <!-- ================= AI CHATBOT - RIGHT SIDE ================= -->
+    <!-- ================= AI CHATBOT ================= -->
     <button id="chatbotToggle" onclick="toggleChatbot()" aria-label="Chat with DAN-ABIBI AI">
-        🤖
+        <i class="fas fa-robot"></i>
         <span class="status-dot"></span>
     </button>
 
     <div id="chatbotWindow">
         <div class="chat-header">
             <div class="ch-left">
-                <div class="ch-avatar">🤖</div>
+                <div class="ch-avatar"><i class="fas fa-robot"></i></div>
                 <div class="ch-name">
                     DAN-ABIBI AI
-                    <small>Online • Powered by Dan Abibi</small>
+                    <small><i class="fas fa-circle" style="color:#2ecc71;font-size:8px;"></i> Online • Powered by Dan Abibi</small>
                 </div>
             </div>
-            <button class="ch-close" onclick="toggleChatbot()">✕</button>
+            <button class="ch-close" onclick="toggleChatbot()"><i class="fas fa-times"></i></button>
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="msg bot">
-                <span class="bot-name">🤖 DAN-ABIBI AI</span>
+                <span class="bot-name"><i class="fas fa-robot"></i> DAN-ABIBI AI</span>
                 👋 Hello! I'm DAN-ABIBI AI, your virtual shopping assistant.<br><br>
                 I can help you with:
                 • <b>Recovery ID</b> — Recover your APP ID for login
@@ -3478,11 +4136,11 @@
                 • <b>Show products</b> — Browse featured items
                 • <b>Help</b> — See all commands
                 <div class="quick-actions">
-                    <button onclick="sendQuickCommand('Recovery ID')">🔑 Recovery ID</button>
-                    <button onclick="sendQuickCommand('Validate order')">✅ Validate Order</button>
-                    <button onclick="sendQuickCommand('Make order')">🛒 Make Order</button>
-                    <button onclick="sendQuickCommand('Show products')">📦 Show Products</button>
-                    <button onclick="sendQuickCommand('Help')">❓ Help</button>
+                    <button onclick="sendQuickCommand('Recovery ID')"><i class="fas fa-key"></i> Recovery ID</button>
+                    <button onclick="sendQuickCommand('Validate order')"><i class="fas fa-check-circle"></i> Validate Order</button>
+                    <button onclick="sendQuickCommand('Make order')"><i class="fas fa-shopping-cart"></i> Make Order</button>
+                    <button onclick="sendQuickCommand('Show products')"><i class="fas fa-box"></i> Show Products</button>
+                    <button onclick="sendQuickCommand('Help')"><i class="fas fa-question-circle"></i> Help</button>
                 </div>
                 <span class="msg-time">Just now</span>
             </div>
@@ -3493,9 +4151,21 @@
         </div>
         <div class="chat-input-wrap">
             <input id="chatInput" type="text" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChatMessage()">
-            <button onclick="sendChatMessage()" aria-label="Send message">➤</button>
+            <button onclick="sendChatMessage()" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
+
+    <!-- ================= FAQ SECTION ================= -->
+    <section id="faqSection">
+        <div class="container">
+            <div class="sectitle-wrap reveal">
+                <div class="eyebrow"><i class="fas fa-question-circle"></i> Got Questions?</div>
+                <h2 class="sectitle">Frequently Asked Questions</h2>
+                <p class="secsub">Find answers to the most common questions about our products and services</p>
+            </div>
+            <div class="faq-list reveal" id="faqList"></div>
+        </div>
+    </section>
 
     <!-- ================= FOOTER ================= -->
     <footer>
@@ -3507,35 +4177,69 @@
                         <div class="bt">Dan Abibi<small>Shopping Complex</small></div>
                     </div>
                     <p>Small detail, big impact. DANIBBDANABIBI Homes &amp; Furnitures — imported quality, available for immediate pickup or delivery.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
                 </div>
                 <div>
-                    <h4>Visit Us</h4>
+                    <h4><i class="fas fa-map-pin"></i> Visit Us</h4>
                     <p>Kibiya House, beside Gidan Buhari,<br>opposite Taj Bank, Zoo Road, Kano.</p>
-                    <p>📞 09029999948</p>
+                    <p><i class="fas fa-phone"></i> 09029999948</p>
                 </div>
                 <div>
-                    <h4>Quick Links</h4>
-                    <a onclick="navigateTo('landing')">Home</a>
-                    <a onclick="navigateTo('track')">Track Order</a>
-                    <a onclick="navigateTo('register')">Register</a>
-                    <a onclick="navigateTo('login')">Login</a>
+                    <h4><i class="fas fa-link"></i> Quick Links</h4>
+                    <a onclick="navigateTo('landing')"><i class="fas fa-home"></i> Home</a>
+                    <a onclick="navigateTo('track')"><i class="fas fa-box"></i> Track Order</a>
+                    <a onclick="navigateTo('register')"><i class="fas fa-user-plus"></i> Register</a>
+                    <a onclick="navigateTo('login')"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="#faqSection"><i class="fas fa-question-circle"></i> FAQ</a>
                 </div>
                 <div>
-                    <h4>Categories</h4>
-                    <a onclick="filterByCategoryName('Furnitures')">Furnitures</a>
-                    <a onclick="filterByCategoryName('Kitchen Wires')">Kitchen Wires</a>
-                    <a onclick="filterByCategoryName('Electronics')">Electronics</a>
-                    <a onclick="filterByCategoryName('Kids')">Kids</a>
+                    <h4><i class="fas fa-th-large"></i> Categories</h4>
+                    <a onclick="filterByCategoryName('Furnitures')"><i class="fas fa-couch"></i> Furnitures</a>
+                    <a onclick="filterByCategoryName('Kitchen Wires')"><i class="fas fa-utensils"></i> Kitchen Wires</a>
+                    <a onclick="filterByCategoryName('Electronics')"><i class="fas fa-tv"></i> Electronics</a>
+                    <a onclick="filterByCategoryName('Kids')"><i class="fas fa-child"></i> Kids</a>
                 </div>
             </div>
-            <div class="footbottom">© <span id="yearNow"></span> Dan Abibi Shopping Complex. All rights reserved.</div>
+            <div class="footbottom">
+                <div>© <span id="yearNow"></span> Dan Abibi Shopping Complex. All rights reserved.</div>
+                <div class="developer-credit">
+                    <i class="fas fa-code"></i> Developed by <a href="#" target="_blank">Abu-Abdurrahman CodeVerge Technology</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
         /* ======================================================================
            DAN ABIBI SHOPPING COMPLEX — APP LOGIC
+           SECURITY: Input sanitization, error handling, CSP headers
         ====================================================================== */
+
+        /* ---------- SECURITY: Input Sanitization ---------- */
+        function sanitizeHTML(str) {
+            if (!str) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;',
+                '/': '&#47;',
+                '`': '&#96;',
+                '=': '&#61;'
+            };
+            return String(str).replace(/[&<>"'/`=]/g, function(s) { return map[s]; });
+        }
+
+        function sanitizeInput(str) {
+            if (!str) return '';
+            return str.trim().replace(/[<>]/g, '');
+        }
 
         /* ---------- FIREBASE INIT ---------- */
         const firebaseConfig = {
@@ -3567,6 +4271,7 @@
             products: [],
             orders: [],
             users: [],
+            faqs: [],
             cart: JSON.parse(localStorage.getItem('dab_cart') || '[]'),
             currentUser: JSON.parse(localStorage.getItem('dab_user') || 'null'),
             isAdmin: sessionStorage.getItem('dab_admin') === 'true',
@@ -3579,16 +4284,18 @@
             lastOrder: null,
             userChart: null,
             adminChart: null,
-            // AI Chat state
-            chatContext: null, // 'recovery' | 'validate' | 'make_order' | null
+            chatContext: null,
             chatRecoveryName: null,
             chatRecoveryEmail: null,
             chatOrderNumber: null,
             chatMakeStep: 0,
             chatMakeProduct: null,
             chatMakeQty: 1,
-            // Flyer
             flyerProduct: null,
+            selectedRating: 0,
+            feedbacks: {},
+            currentSlide: 0,
+            slideImages: [],
         };
 
         /* ---------- UTILITIES ---------- */
@@ -3607,8 +4314,7 @@
 
         function naira(n) { return '₦' + Number(n || 0).toLocaleString('en-NG'); }
 
-        function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;',
-                '>': '&gt;', '"': '&quot;', "'": '&#39;' } [c])); }
+        function escapeHtml(s) { return sanitizeHTML(s); }
 
         function genOrderNo() { return 'DAB-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 90 + 10); }
 
@@ -3627,8 +4333,21 @@
 
         function fmtDate(ts) {
             if (!ts) return '-';
-            const d = ts.toDate ? ts.toDate() : new Date(ts);
-            return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            try {
+                const d = ts.toDate ? ts.toDate() : new Date(ts);
+                return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            } catch (e) { return '-'; }
+        }
+
+        function fmtTime(ts) {
+            if (!ts) return '';
+            try {
+                const d = ts.toDate ? ts.toDate() : new Date(ts);
+                return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) + ' ' + d.toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } catch (e) { return ''; }
         }
 
         /* ---------- ROUTER ---------- */
@@ -3673,75 +4392,107 @@
            SEED DATA (first-run only)
         ====================================================================== */
         async function seedIfEmpty() {
-            const catSnap = await db.collection('categories').limit(1).get();
-            if (catSnap.empty) {
-                const cats = [
-                    { name: 'Furnitures', icon: '🛋️' },
-                    { name: 'Kitchen Wires', icon: '🍳' },
-                    { name: 'Kids', icon: '🧸' },
-                    { name: 'Toys', icon: '🎮' },
-                    { name: 'Electronics', icon: '📱' },
-                    { name: 'Home Decor', icon: '🏺' }
-                ];
-                for (const c of cats) { await db.collection('categories').add({ ...c,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp() }); }
-            }
-            const prodSnap = await db.collection('products').limit(1).get();
-            if (prodSnap.empty) {
-                const demo = [
-                    { name: 'Luxury Velvet Sofa Set', category: 'Furnitures', price: 450000, discount: 12, rating: 4.8,
-                        buyersCount: 64, isNew: true, featured: true,
-                        description: 'A premium 3-seater velvet sofa with solid imported hardwood frame. Deep cushioning, elegant gold-trim legs, and stain-resistant fabric — built for comfort and status.',
-                        images: ['https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=900',
-                            'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=900',
-                            'https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=900'
-                        ] },
-                    { name: 'Non-Stick Cookware Set (10pcs)', category: 'Kitchen Wires', price: 38000, discount: 8,
-                        rating: 4.6, buyersCount: 212, isNew: false, featured: false,
-                        description: 'Complete 10-piece non-stick cookware set — pots, pans, and lids with heat-resistant handles. Imported quality for everyday cooking.',
-                        images: ['https://images.unsplash.com/photo-1584990347449-a2b6e7e6b6c4?q=80&w=900',
-                            'https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?q=80&w=900'
-                        ] },
-                    { name: 'Educational Building Blocks', category: 'Kids', price: 9500, discount: 0, rating: 4.9,
-                        buyersCount: 341, isNew: true, featured: true,
-                        description: 'Safe, colorful building blocks that boost creativity and motor skills. Non-toxic materials, perfect for ages 3+.',
-                        images: ['https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=900',
-                            'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?q=80&w=900'
-                        ] },
-                    { name: 'Remote Control Racing Car', category: 'Toys', price: 15500, discount: 15, rating: 4.5,
-                        buyersCount: 98, isNew: false, featured: false,
-                        description: 'High-speed RC racing car with rechargeable battery and full directional control. Hours of fun guaranteed.',
-                        images: ['https://images.unsplash.com/photo-1594787318286-3d835c1d207f?q=80&w=900',
-                            'https://images.unsplash.com/photo-1566577134770-3d85bb3a9cc4?q=80&w=900'
-                        ] },
-                    { name: '55" Smart 4K Television', category: 'Electronics', price: 320000, discount: 10, rating: 4.7,
-                        buyersCount: 156, isNew: true, featured: true,
-                        description: 'Crystal-clear 4K UHD display with smart apps built in. Slim bezel design fits any modern living room.',
-                        images: ['https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=900',
-                            'https://images.unsplash.com/photo-1461151304267-38535e780c79?q=80&w=900'
-                        ] },
-                    { name: 'Modern Dining Table (6-Seater)', category: 'Furnitures', price: 280000, discount: 5,
-                        rating: 4.8, buyersCount: 47, isNew: false, featured: false,
-                        description: 'Elegant 6-seater dining table crafted from solid oak with a matte finish, paired with cushioned chairs.',
-                        images: ['https://images.unsplash.com/photo-1617104551722-3b2d51366400?q=80&w=900',
-                            'https://images.unsplash.com/photo-1615874959474-d609969a20ed?q=80&w=900'
-                        ] },
-                    { name: 'Decorative Ceramic Vase Set', category: 'Home Decor', price: 12000, discount: 0, rating: 4.4,
-                        buyersCount: 73, isNew: false, featured: false,
-                        description: 'Set of 3 handcrafted ceramic vases to elevate any room. Neutral tones that match any decor style.',
-                        images: ['https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=900',
-                            'https://images.unsplash.com/photo-1578500351865-020e1697ef70?q=80&w=900'
-                        ] },
-                    { name: 'Standing Fan 18-Inch', category: 'Electronics', price: 32000, discount: 6, rating: 4.3,
-                        buyersCount: 189, isNew: false, featured: false,
-                        description: 'Powerful 18-inch standing fan with 3-speed settings and oscillation. Built to last through Nigerian heat.',
-                        images: ['https://images.unsplash.com/photo-1631545806609-9fa0f6efb61c?q=80&w=900',
-                            'https://images.unsplash.com/photo-1631048500856-6c8f8b3f8c8e?q=80&w=900'
-                        ] }
-                ];
-                for (const p of demo) { await db.collection('products').add({ ...p,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp() }); }
-            }
+            try {
+                const catSnap = await db.collection('categories').limit(1).get();
+                if (catSnap.empty) {
+                    const cats = [
+                        { name: 'Furnitures', icon: '🛋️' },
+                        { name: 'Kitchen Wires', icon: '🍳' },
+                        { name: 'Kids', icon: '🧸' },
+                        { name: 'Toys', icon: '🎮' },
+                        { name: 'Electronics', icon: '📱' },
+                        { name: 'Home Decor', icon: '🏺' }
+                    ];
+                    for (const c of cats) { await db.collection('categories').add({ ...c,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp() }); }
+                }
+                const prodSnap = await db.collection('products').limit(1).get();
+                if (prodSnap.empty) {
+                    const demo = [
+                        { name: 'Luxury Velvet Sofa Set', category: 'Furnitures', price: 450000, discount: 12,
+                            rating: 4.8,
+                            buyersCount: 64, isNew: true, featured: true,
+                            description: 'A premium 3-seater velvet sofa with solid imported hardwood frame. Deep cushioning, elegant gold-trim legs, and stain-resistant fabric — built for comfort and status.',
+                            images: ['https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=900',
+                                'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=900',
+                                'https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=900'
+                            ] },
+                        { name: 'Non-Stick Cookware Set (10pcs)', category: 'Kitchen Wires', price: 38000,
+                            discount: 8,
+                            rating: 4.6, buyersCount: 212, isNew: false, featured: false,
+                            description: 'Complete 10-piece non-stick cookware set — pots, pans, and lids with heat-resistant handles. Imported quality for everyday cooking.',
+                            images: ['https://images.unsplash.com/photo-1584990347449-a2b6e7e6b6c4?q=80&w=900',
+                                'https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?q=80&w=900'
+                            ] },
+                        { name: 'Educational Building Blocks', category: 'Kids', price: 9500, discount: 0,
+                            rating: 4.9,
+                            buyersCount: 341, isNew: true, featured: true,
+                            description: 'Safe, colorful building blocks that boost creativity and motor skills. Non-toxic materials, perfect for ages 3+.',
+                            images: ['https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=900',
+                                'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?q=80&w=900'
+                            ] },
+                        { name: 'Remote Control Racing Car', category: 'Toys', price: 15500, discount: 15,
+                            rating: 4.5,
+                            buyersCount: 98, isNew: false, featured: false,
+                            description: 'High-speed RC racing car with rechargeable battery and full directional control. Hours of fun guaranteed.',
+                            images: ['https://images.unsplash.com/photo-1594787318286-3d835c1d207f?q=80&w=900',
+                                'https://images.unsplash.com/photo-1566577134770-3d85bb3a9cc4?q=80&w=900'
+                            ] },
+                        { name: '55" Smart 4K Television', category: 'Electronics', price: 320000, discount: 10,
+                            rating: 4.7,
+                            buyersCount: 156, isNew: true, featured: true,
+                            description: 'Crystal-clear 4K UHD display with smart apps built in. Slim bezel design fits any modern living room.',
+                            images: ['https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=900',
+                                'https://images.unsplash.com/photo-1461151304267-38535e780c79?q=80&w=900'
+                            ] },
+                        { name: 'Modern Dining Table (6-Seater)', category: 'Furnitures', price: 280000,
+                            discount: 5,
+                            rating: 4.8, buyersCount: 47, isNew: false, featured: false,
+                            description: 'Elegant 6-seater dining table crafted from solid oak with a matte finish, paired with cushioned chairs.',
+                            images: ['https://images.unsplash.com/photo-1617104551722-3b2d51366400?q=80&w=900',
+                                'https://images.unsplash.com/photo-1615874959474-d609969a20ed?q=80&w=900'
+                            ] },
+                        { name: 'Decorative Ceramic Vase Set', category: 'Home Decor', price: 12000, discount: 0,
+                            rating: 4.4,
+                            buyersCount: 73, isNew: false, featured: false,
+                            description: 'Set of 3 handcrafted ceramic vases to elevate any room. Neutral tones that match any decor style.',
+                            images: ['https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=900',
+                                'https://images.unsplash.com/photo-1578500351865-020e1697ef70?q=80&w=900'
+                            ] },
+                        { name: 'Standing Fan 18-Inch', category: 'Electronics', price: 32000, discount: 6,
+                            rating: 4.3,
+                            buyersCount: 189, isNew: false, featured: false,
+                            description: 'Powerful 18-inch standing fan with 3-speed settings and oscillation. Built to last through Nigerian heat.',
+                            images: ['https://images.unsplash.com/photo-1631545806609-9fa0f6efb61c?q=80&w=900',
+                                'https://images.unsplash.com/photo-1631048500856-6c8f8b3f8c8e?q=80&w=900'
+                            ] }
+                    ];
+                    for (const p of demo) { await db.collection('products').add({ ...p,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp() }); }
+                }
+                const faqSnap = await db.collection('faqs').limit(1).get();
+                if (faqSnap.empty) {
+                    const faqs = [
+                        { question: 'How do I place an order?',
+                            answer: 'You can place an order by browsing our products, adding items to your cart, and proceeding to checkout. You can also use our AI chatbot to place an order by typing "Make order".',
+                            order: 1 },
+                        { question: 'What payment methods do you accept?',
+                            answer: 'We currently accept payments via WhatsApp. After placing your order, you\'ll get a WhatsApp link to complete your payment. We also accept bank transfers — contact us for details.',
+                            order: 2 },
+                        { question: 'How can I track my order?',
+                            answer: 'You can track your order using the "Track Order" page or by asking our AI chatbot to "Validate order". Simply enter your order number to see the current status.',
+                            order: 3 },
+                        { question: 'Do you deliver outside Kano?',
+                            answer: 'Yes, we deliver across Nigeria. Delivery times and costs may vary depending on your location. Contact us for a specific quote.',
+                            order: 4 },
+                        { question: 'What if I forgot my APP ID?',
+                            answer: 'You can recover your APP ID by asking our AI chatbot "Recovery ID" or by contacting our support team. The chatbot will ask for your name and email to recover your ID.',
+                            order: 5 },
+                    ];
+                    for (const f of faqs) { await db.collection('faqs').add({ ...f,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp() }); }
+                }
+            } catch (e) { console.warn('Seed skipped:', e.message); }
         }
 
         /* ======================================================================
@@ -3753,7 +4504,7 @@
                 renderCategories();
                 renderCategorySelectOptions();
                 if (STATE.isAdmin) renderAdminCategoriesTable();
-            });
+            }, err => console.warn('Categories listener error:', err));
         }
 
         function listenProducts() {
@@ -3766,7 +4517,15 @@
                     renderAdminFeaturedTable();
                     renderAdminOverview(); }
                 if (STATE.currentUser) renderUserAlerts();
-            });
+                if (STATE.activeProduct) {
+                    const current = STATE.products.find(p => p.id === STATE.activeProduct.id);
+                    if (current) STATE.activeProduct = current;
+                    const modal = document.getElementById('productModal');
+                    if (modal && modal.classList.contains('show')) {
+                        refreshProductModal();
+                    }
+                }
+            }, err => console.warn('Products listener error:', err));
         }
 
         function listenOrders() {
@@ -3775,26 +4534,38 @@
                 if (STATE.isAdmin) { renderAdminOrdersTable();
                     renderAdminOverview(); }
                 if (STATE.currentUser) renderUserDashboardData();
-            });
+            }, err => console.warn('Orders listener error:', err));
         }
 
         function listenUsers() {
             db.collection('users').orderBy('createdAt', 'desc').onSnapshot(snap => {
                 STATE.users = snap.docs.map(d => ({ id: d.id, ...d.data() }));
                 if (STATE.isAdmin) renderAdminUsersTable();
-            });
+            }, err => console.warn('Users listener error:', err));
+        }
+
+        function listenFaqs() {
+            db.collection('faqs').orderBy('order', 'asc').onSnapshot(snap => {
+                STATE.faqs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                renderFaqs();
+                if (STATE.isAdmin) renderAdminFaqTable();
+            }, err => console.warn('FAQs listener error:', err));
         }
 
         /* ======================================================================
-           CATEGORIES
+           CATEGORIES - MODERN & PREMIUM
         ====================================================================== */
         function renderCategories() {
             const row = document.getElementById('catRow');
             let html =
-                `<div class="catcard ${!STATE.activeCategory?'active':''}" onclick="filterByCategoryName(null)"><div class="caticon">🗂️</div><div class="catname">All</div></div>`;
+                `<div class="catcard ${!STATE.activeCategory?'active':''}" onclick="filterByCategoryName(null)"><span class="caticon">🗂️</span><span class="catname">All</span><span class="cat-count">${STATE.products.length} items</span></div>`;
             STATE.categories.forEach(c => {
+                const count = STATE.products.filter(p => p.category === c.name).length;
                 html += `<div class="catcard ${STATE.activeCategory===c.name?'active':''}" onclick="filterByCategoryName('${escapeHtml(c.name)}')">
-              <div class="caticon">${c.icon||'🛍️'}</div><div class="catname">${escapeHtml(c.name)}</div></div>`;
+              <span class="caticon">${c.icon||'🛍️'}</span>
+              <span class="catname">${escapeHtml(c.name)}</span>
+              <span class="cat-count">${count} items</span>
+            </div>`;
             });
             row.innerHTML = html;
         }
@@ -3830,7 +4601,7 @@
 
         function starString(rating) {
             const r = Math.round(rating || 0);
-            return '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r);
+            return '★'.repeat(Math.min(r, 5)) + '☆'.repeat(Math.max(0, 5 - Math.min(r, 5)));
         }
 
         function renderProducts() {
@@ -3839,28 +4610,38 @@
             const visible = list.slice(0, STATE.productPage * STATE.productsPerPage);
             if (list.length === 0) {
                 grid.innerHTML =
-                    `<div style="grid-column:1/-1; text-align:center; padding:40px; color:#999;">No products found. Try a different search or category.</div>`;
+                    `<div style="grid-column:1/-1; text-align:center; padding:40px; color:#999;"><i class="fas fa-search" style="font-size:32px;display:block;margin-bottom:10px;"></i>No products found. Try a different search or category.</div>`;
                 document.getElementById('loadMoreBtn').style.display = 'none';
                 return;
             }
             grid.innerHTML = visible.map(p => {
                 const discPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
+                const avgRating = p.avgRating || p.rating || 0;
+                const ratingCount = p.ratingCount || 0;
                 return `<div class="prodcard" onclick="openProductModal('${p.id}')">
               <div class="prodimgwrap">
                 <img src="${(p.images&&p.images[0])||''}" alt="${escapeHtml(p.name)}" loading="lazy">
                 ${p.discount ? `<div class="ribbon">-${p.discount}%</div>` : ''}
-                ${p.isNew ? `<div class="wishtag">NEW</div>` : ''}
-                ${p.featured ? `<div class="wishtag" style="background:var(--gold-grad);color:#000;right:auto;left:8px;">⭐ FEATURED</div>` : ''}
+                ${p.isNew ? `<div class="wishtag"><i class="fas fa-star"></i> NEW</div>` : ''}
+                ${p.featured ? `<div class="wishtag" style="background:var(--gold-grad);color:#000;right:auto;left:8px;"><i class="fas fa-crown"></i> FEATURED</div>` : ''}
               </div>
               <div class="prodbody">
                 <div class="prodcat">${escapeHtml(p.category||'')}</div>
                 <div class="prodname">${escapeHtml(p.name)}</div>
-                <div class="prodrating"><span class="stars">${starString(p.rating)}</span> ${p.rating||0} · ${p.buyersCount||0} sold</div>
+                <div class="prodrating">
+                  <span class="stars">${starString(avgRating)}</span>
+                  ${avgRating.toFixed(1)} 
+                  <span class="rating-count">(${ratingCount} ratings)</span>
+                </div>
                 <div class="prodprice">
                   <span class="now">${naira(discPrice)}</span>
                   ${p.discount ? `<span class="was">${naira(p.price)}</span>` : ''}
                 </div>
-                <button class="addbtn" onclick="event.stopPropagation(); quickAdd('${p.id}')">Add to Cart</button>
+                <div class="prod-actions-row">
+                  <button class="addbtn" onclick="event.stopPropagation(); quickAdd('${p.id}')"><i class="fas fa-shopping-cart"></i> Add</button>
+                  <button class="icon-btn-sm" onclick="event.stopPropagation(); openShareModalForProduct('${p.id}')" title="Share"><i class="fas fa-share-alt"></i></button>
+                  <button class="icon-btn-sm" onclick="event.stopPropagation(); askViaWhatsAppForProduct('${p.id}')" title="Ask on WhatsApp" style="color:#25d366;"><i class="fab fa-whatsapp"></i></button>
+                </div>
               </div>
             </div>`;
             }).join('');
@@ -3879,14 +4660,14 @@
             if (e.target && e.target.id === 'searchInput' && e.key === 'Enter') applySearch();
         });
 
-        /* ---------- FEATURED PRODUCTS - REDESIGNED ---------- */
+        /* ---------- FEATURED PRODUCTS ---------- */
         function renderFeaturedProducts() {
             const grid = document.getElementById('featuredGrid');
             const featured = STATE.products.filter(p => p.featured === true).slice(0, 8);
             if (featured.length === 0) {
                 grid.innerHTML = `
                 <div class="featured-empty">
-                  <div class="empty-icon">✨</div>
+                  <div class="empty-icon"><i class="fas fa-star"></i></div>
                   <h3>No featured products yet</h3>
                   <p style="color:#999;font-size:13px;">Admin can mark products as featured from the dashboard.</p>
                 </div>
@@ -3896,12 +4677,14 @@
             grid.innerHTML = featured.map(p => {
                 const discPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
                 const saveAmount = p.discount ? p.price - discPrice : 0;
+                const avgRating = p.avgRating || p.rating || 0;
+                const ratingCount = p.ratingCount || 0;
                 return `<div class="featured-card" onclick="openProductModal('${p.id}')">
               <div class="f-img">
                 <img src="${(p.images&&p.images[0])||''}" alt="${escapeHtml(p.name)}" loading="lazy">
                 <div class="f-overlay"></div>
-                <span class="f-badge">⭐ PREMIUM</span>
-                ${p.isNew ? `<span class="f-badge-new">NEW</span>` : ''}
+                <span class="f-badge"><i class="fas fa-crown"></i> PREMIUM</span>
+                ${p.isNew ? `<span class="f-badge-new"><i class="fas fa-star"></i> NEW</span>` : ''}
                 ${p.discount ? `<span class="f-discount-tag">-${p.discount}%</span>` : ''}
               </div>
               <div class="f-body">
@@ -3914,31 +4697,74 @@
                 </div>
                 <div class="f-desc">${escapeHtml((p.description||'').slice(0,120))}${(p.description||'').length>120?'...':''}</div>
                 <div class="f-meta">
-                  <span class="stars">${starString(p.rating)}</span>
-                  <span>${p.rating||0}</span>
+                  <span class="stars">${starString(avgRating)}</span>
+                  <span>${avgRating.toFixed(1)}</span>
+                  <span class="sep">·</span>
+                  <span>${ratingCount} ratings</span>
                   <span class="sep">·</span>
                   <span>${p.buyersCount||0} sold</span>
                 </div>
                 <div class="f-actions">
-                  <button class="btn-sm gold" onclick="event.stopPropagation(); quickAdd('${p.id}')">🛒 Add to Cart</button>
-                  <button class="btn-sm outline" onclick="event.stopPropagation(); openFlyerForProduct('${p.id}')">📄 Flyer</button>
+                  <button class="btn-sm gold" onclick="event.stopPropagation(); quickAdd('${p.id}')"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                  <button class="btn-sm outline" onclick="event.stopPropagation(); openFlyerForProduct('${p.id}')"><i class="fas fa-file-pdf"></i> Flyer</button>
+                  <button class="btn-sm outline" onclick="event.stopPropagation(); openShareModalForProduct('${p.id}')" style="border-color:#1877f2;color:#1877f2;"><i class="fas fa-share-alt"></i></button>
                 </div>
               </div>
             </div>`;
             }).join('');
         }
 
-        /* ---------- PRODUCT MODAL ---------- */
+        /* ---------- PRODUCT MODAL - MODERN GALLERY ---------- */
         function openProductModal(id) {
             const p = STATE.products.find(x => x.id === id);
             if (!p) return;
             STATE.activeProduct = p;
             STATE.activeQty = 1;
+            STATE.selectedRating = 0;
+            STATE.currentSlide = 0;
+            STATE.slideImages = p.images || [];
+            refreshProductModal();
+            openModal('productModal');
+            loadFeedback(id);
+        }
+
+        function refreshProductModal() {
+            const p = STATE.activeProduct;
+            if (!p) return;
+            STATE.slideImages = p.images || [];
+            if (STATE.slideImages.length === 0) STATE.slideImages = ['https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=600&auto=format&fit=crop'];
+            STATE.currentSlide = Math.min(STATE.currentSlide, STATE.slideImages.length - 1);
+            if (STATE.currentSlide < 0) STATE.currentSlide = 0;
+
+            // Main image
+            document.getElementById('pmMainImg').src = STATE.slideImages[STATE.currentSlide] || STATE.slideImages[0];
+            document.getElementById('pmMainImg').alt = escapeHtml(p.name);
+
+            // Badges
+            document.getElementById('pmFeaturedBadge').style.display = p.featured ? 'block' : 'none';
+            if (p.discount) {
+                document.getElementById('pmDiscountBadge').style.display = 'block';
+                document.getElementById('pmDiscountBadge').textContent = '-' + p.discount + '% OFF';
+            } else {
+                document.getElementById('pmDiscountBadge').style.display = 'none';
+            }
+
+            // Thumbnails
+            const thumbsWrap = document.getElementById('pmThumbs');
+            thumbsWrap.innerHTML = STATE.slideImages.map((src, i) => `
+                <div class="thumb ${i===STATE.currentSlide?'active':''}" onclick="goToSlide(${i})">
+                  <img src="${src}" alt="Thumbnail ${i+1}" loading="lazy">
+                </div>
+              `).join('');
+
+            // Info
             document.getElementById('pmCat').textContent = p.category || '';
             document.getElementById('pmTitle').textContent = p.name;
-            document.getElementById('pmStars').textContent = starString(p.rating);
-            document.getElementById('pmRatingNum').textContent = (p.rating || 0).toFixed(1);
-            document.getElementById('pmBuyersCount').textContent = (p.buyersCount || 0) + ' sold';
+            const avgRating = p.avgRating || p.rating || 0;
+            const ratingCount = p.ratingCount || 0;
+            document.getElementById('pmStars').innerHTML = starString(avgRating);
+            document.getElementById('pmRatingNum').textContent = avgRating.toFixed(1);
+            document.getElementById('pmRatingCount').textContent = `(${ratingCount} ratings)`;
             const discPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
             document.getElementById('pmPrice').textContent = naira(discPrice);
             const was = document.getElementById('pmWas');
@@ -3950,23 +4776,200 @@
                 pill.classList.add('hidden'); }
             document.getElementById('pmDesc').textContent = p.description || '';
             document.getElementById('pmQty').textContent = '1';
-            const slides = document.getElementById('pmSlides');
-            slides.innerHTML = (p.images || []).map(src => `<img src="${src}" alt="${escapeHtml(p.name)}">`).join('');
-            const dotsWrap = document.getElementById('pmDots');
-            dotsWrap.innerHTML = (p.images || []).map((_, i) => `<span class="${i===0?'active':''}"></span>`).join('');
-            slides.onscroll = () => {
-                const idx = Math.round(slides.scrollLeft / slides.clientWidth);
-                [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === idx));
-            };
             const avatars = document.getElementById('pmAvatars');
             const n = Math.min(4, Math.max(1, Math.floor((p.buyersCount || 1) / 20) + 1));
             const initials = ['A', 'M', 'S', 'H', 'B', 'K'];
             avatars.innerHTML = Array.from({ length: n }).map((_, i) => `<span>${initials[i%initials.length]}</span>`).join(
             '');
             document.getElementById('pmBuyersText').textContent = `Purchased by ${p.buyersCount||0}+ happy customers`;
-            openModal('productModal');
+            resetStarInput();
+            document.getElementById('fbInput').value = '';
         }
 
+        function goToSlide(idx) {
+            STATE.currentSlide = Math.max(0, Math.min(idx, STATE.slideImages.length - 1));
+            document.getElementById('pmMainImg').src = STATE.slideImages[STATE.currentSlide];
+            document.querySelectorAll('#pmThumbs .thumb').forEach((el, i) => {
+                el.classList.toggle('active', i === STATE.currentSlide);
+            });
+        }
+
+        function changeSlide(dir) {
+            const newIdx = STATE.currentSlide + dir;
+            if (newIdx >= 0 && newIdx < STATE.slideImages.length) {
+                goToSlide(newIdx);
+            }
+        }
+
+        /* ---------- RATING SYSTEM ---------- */
+        function setRating(val) {
+            STATE.selectedRating = val;
+            const stars = document.querySelectorAll('#starInput span');
+            stars.forEach((el, i) => {
+                el.textContent = i < val ? '★' : '☆';
+                el.className = i < val ? 'active' : '';
+            });
+            document.getElementById('ratingMsg').textContent = val > 0 ? `You rated ${val} ★` : 'Click a star to rate';
+            if (val > 0 && STATE.activeProduct) {
+                submitRating(val);
+            }
+        }
+
+        function resetStarInput() {
+            const stars = document.querySelectorAll('#starInput span');
+            stars.forEach(el => {
+                el.textContent = '☆';
+                el.className = '';
+            });
+            document.getElementById('ratingMsg').textContent = 'Click a star to rate';
+            STATE.selectedRating = 0;
+        }
+
+        async function submitRating(val) {
+            if (!STATE.activeProduct) return;
+            try {
+                const userId = STATE.currentUser ? STATE.currentUser.appId : 'anonymous-' + Date.now();
+                const userName = STATE.currentUser ? STATE.currentUser.name : 'Guest';
+                await db.collection('ratings').add({
+                    productId: STATE.activeProduct.id,
+                    userId: userId,
+                    userName: userName,
+                    rating: val,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                toast('Thank you for rating! ⭐');
+                await updateProductRating(STATE.activeProduct.id);
+            } catch (e) { console.error(e);
+                toast('Failed to submit rating', 'error'); }
+        }
+
+        async function updateProductRating(productId) {
+            try {
+                const snap = await db.collection('ratings').where('productId', '==', productId).get();
+                const ratings = snap.docs.map(d => d.data().rating);
+                const count = ratings.length;
+                const avg = count > 0 ? ratings.reduce((a, b) => a + b, 0) / count : 0;
+                await db.collection('products').doc(productId).update({
+                    avgRating: Math.round(avg * 10) / 10,
+                    ratingCount: count
+                });
+            } catch (e) { console.error('Error updating rating:', e); }
+        }
+
+        /* ---------- FEEDBACK ---------- */
+        async function loadFeedback(productId) {
+            try {
+                const snap = await db.collection('feedback')
+                    .where('productId', '==', productId)
+                    .orderBy('createdAt', 'desc')
+                    .limit(20)
+                    .get();
+                const list = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                renderFeedback(list);
+            } catch (e) { console.error('Error loading feedback:', e); }
+        }
+
+        function renderFeedback(list) {
+            const container = document.getElementById('fbList');
+            if (!list || list.length === 0) {
+                container.innerHTML = `<div class="fb-empty">No feedback yet. Be the first to share!</div>`;
+                return;
+            }
+            container.innerHTML = list.map(f => `
+                <div class="fb-item">
+                  <span class="fb-name"><i class="fas fa-user"></i> ${escapeHtml(f.userName||'Guest')}</span>
+                  <span class="fb-stars">${'★'.repeat(Math.min(f.rating||0,5))}${'☆'.repeat(Math.max(0,5-Math.min(f.rating||0,5)))}</span>
+                  <span class="fb-time">${fmtTime(f.createdAt)}</span>
+                  <span class="fb-text">${escapeHtml(f.message||'')}</span>
+                </div>
+              `).join('');
+        }
+
+        async function submitFeedback() {
+            if (!STATE.activeProduct) { toast('No product selected', 'error'); return; }
+            const message = document.getElementById('fbInput').value.trim();
+            if (!message) { toast('Please write your feedback', 'error'); return; }
+            try {
+                const userId = STATE.currentUser ? STATE.currentUser.appId : 'anonymous-' + Date.now();
+                const userName = STATE.currentUser ? STATE.currentUser.name : 'Guest';
+                await db.collection('feedback').add({
+                    productId: STATE.activeProduct.id,
+                    userId: userId,
+                    userName: userName,
+                    message: sanitizeHTML(message),
+                    rating: STATE.selectedRating || 0,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                toast('Feedback posted! 💬');
+                document.getElementById('fbInput').value = '';
+                loadFeedback(STATE.activeProduct.id);
+            } catch (e) { console.error(e);
+                toast('Failed to post feedback', 'error'); }
+        }
+
+        function clearFeedback() {
+            document.getElementById('fbInput').value = '';
+        }
+
+        /* ---------- SHARE ---------- */
+        function openShareModal() {
+            if (!STATE.activeProduct) return;
+            openShareModalForProduct(STATE.activeProduct.id);
+        }
+
+        function openShareModalForProduct(productId) {
+            const p = STATE.products.find(x => x.id === productId);
+            if (!p) { toast('Product not found', 'error'); return; }
+            const url = window.location.href.split('?')[0] + '?product=' + p.id;
+            document.getElementById('shareLinkInput').value = url;
+            STATE.shareProduct = p;
+            openModal('shareModal');
+        }
+
+        function shareVia(platform) {
+            const link = document.getElementById('shareLinkInput').value;
+            const p = STATE.shareProduct || STATE.activeProduct;
+            if (!p) return;
+            const discPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
+            const text =
+                `🛍️ Check out "${p.name}" from Dan Abibi Shopping Complex! ${naira(discPrice)} - ${link}`;
+            let url = '';
+            switch (platform) {
+                case 'facebook':
+                    url =
+                        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}&quote=${encodeURIComponent(text)}`;
+                    break;
+                case 'twitter':
+                    url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                    break;
+                case 'whatsapp':
+                    url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(link).then(() => toast('Link copied! 📋'));
+                    return;
+                default:
+                    return;
+            }
+            if (url) window.open(url, '_blank');
+        }
+
+        /* ---------- WHATSAPP INQUIRY ---------- */
+        function askViaWhatsApp() {
+            if (!STATE.activeProduct) return;
+            askViaWhatsAppForProduct(STATE.activeProduct.id);
+        }
+
+        function askViaWhatsAppForProduct(productId) {
+            const p = STATE.products.find(x => x.id === productId);
+            if (!p) { toast('Product not found', 'error'); return; }
+            const discPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
+            const msg =
+                `Hello Dan Abibi Shopping Complex!%0A%0AI'm interested in the product:%0A📦 *${p.name}*%0A💰 Price: ${naira(discPrice)}${p.discount ? ` (was ${naira(p.price)}, ${p.discount}% off)` : ''}%0A📂 Category: ${p.category}%0A%0A${p.description ? '📝 ' + p.description.slice(0,150) + '...' : ''}%0A%0A📷 View product: ${window.location.href.split('?')[0]}?product=${p.id}%0A%0AI would like to know more about this product. Please provide more details about:`;
+            window.open(`https://wa.me/${COMPANY.whatsapp}?text=${msg}`, '_blank');
+        }
+
+        /* ---------- PRODUCT ACTIONS ---------- */
         function changeQty(delta) {
             STATE.activeQty = Math.max(1, STATE.activeQty + delta);
             document.getElementById('pmQty').textContent = STATE.activeQty;
@@ -4009,7 +5012,7 @@
             const wrap = document.getElementById('cartItemsWrap');
             if (STATE.cart.length === 0) {
                 wrap.innerHTML =
-                    `<div class="cart-empty"><div class="em-icon">🛍️</div>Your cart is empty<br><small>Add some premium products to get started</small></div>`;
+                    `<div class="cart-empty"><div class="em-icon"><i class="fas fa-shopping-bag"></i></div>Your cart is empty<br><small>Add some premium products to get started</small></div>`;
             } else {
                 wrap.innerHTML = STATE.cart.map((c, i) => `
               <div class="cart-item">
@@ -4022,7 +5025,7 @@
                     <span>${c.qty}</span>
                     <button onclick="cartQtyChange(${i},1)">+</button>
                   </div>
-                  <a class="ci-remove" onclick="removeCartItem(${i})">Remove</a>
+                  <a class="ci-remove" onclick="removeCartItem(${i})"><i class="fas fa-trash"></i> Remove</a>
                 </div>
               </div>`).join('');
             }
@@ -4067,10 +5070,10 @@
                 items: STATE.cart.map(c => ({ productId: c.productId, name: c.name, price: c.price, qty: c.qty,
                     image: c.image })),
                 total,
-                buyerName: name,
-                buyerPhone: phone,
-                buyerAddress: address,
-                note,
+                buyerName: sanitizeHTML(name),
+                buyerPhone: sanitizeHTML(phone),
+                buyerAddress: sanitizeHTML(address),
+                note: sanitizeHTML(note),
                 status: 'pending',
                 paymentStatus: 'unpaid',
                 userAppId: STATE.currentUser ? STATE.currentUser.appId : null,
@@ -4085,7 +5088,6 @@
                 document.getElementById('successOrderNo').textContent = orderNo;
                 document.getElementById('regPromptBox').style.display = STATE.currentUser ? 'none' : 'block';
                 openModal('successModal');
-                // Notify AI
                 addChatMessage('bot',
                     `✅ Order #${orderNo} has been placed successfully! I'll help you track it anytime.`);
             } catch (e) { console.error(e);
@@ -4168,8 +5170,10 @@
             document.getElementById('invoiceContent').innerHTML = buildInvoiceHtml(order);
             const qrDiv = document.getElementById('invQrCode');
             qrDiv.innerHTML = '';
-            new QRCode(qrDiv, { text: `${COMPANY.name} | Order:${order.orderNo} | Status:${order.paymentStatus}`,
-                width: 70, height: 70 });
+            try {
+                new QRCode(qrDiv, { text: `${COMPANY.name} | Order:${order.orderNo} | Status:${order.paymentStatus}`,
+                    width: 70, height: 70 });
+            } catch (e) { console.warn('QR generation error:', e); }
             setTimeout(() => window.print(), 300);
         }
 
@@ -4185,17 +5189,18 @@
         }
 
         /* ======================================================================
-           ORDER TRACKING (public)
+           ORDER TRACKING
         ====================================================================== */
         async function trackOrder() {
             const val = document.getElementById('trackOrderInput').value.trim();
             const resultBox = document.getElementById('trackResult');
             if (!val) { toast('Enter an order number', 'error'); return; }
-            resultBox.innerHTML = `<p style="text-align:center;color:#888;">Searching...</p>`;
+            resultBox.innerHTML = `<p style="text-align:center;color:#888;"><i class="fas fa-spinner fa-spin"></i> Searching...</p>`;
             try {
                 const snap = await db.collection('orders').where('orderNo', '==', val).limit(1).get();
                 if (snap.empty) { resultBox.innerHTML =
-                    `<p style="text-align:center;color:#c0392b;">No order found with that number.</p>`; return; }
+                    `<p style="text-align:center;color:#c0392b;"><i class="fas fa-exclamation-circle"></i> No order found with that number.</p>`;
+                    return; }
                 const o = snap.docs[0].data();
                 resultBox.innerHTML = renderOrderTracker(o, true);
             } catch (e) { console.error(e);
@@ -4210,28 +5215,41 @@
             const stepsHtml = steps.map((s, i) => `
                 <div class="trackstep ${i<=doneIndex?'done':''}">
                   <div class="connector"></div>
-                  <div class="dot">${i<doneIndex ? '✓' : (i===doneIndex?'●':i+1)}</div>
+                  <div class="dot">${i<doneIndex ? '<i class="fas fa-check"></i>' : (i===doneIndex?'●':i+1)}</div>
                   <div class="lbl">${s}</div>
                 </div>`).join('');
             const itemsHtml = (o.items || []).map(i =>
                 `<tr><td>${escapeHtml(i.name)}</td><td>${i.qty}</td><td>${naira(i.price*i.qty)}</td></tr>`).join('');
             let reprintBtn = '';
+            let paymentBtn = '';
             if (o.paymentStatus === 'paid' && showReprint) {
                 reprintBtn =
-                    `<div class="reprint-btn-wrap"><button class="btn-primary" onclick="reprintInvoiceByOrderNo('${o.orderNo}')">🖨️ Reprint Invoice</button></div>`;
+                    `<div class="reprint-btn-wrap"><button class="btn-primary" onclick="reprintInvoiceByOrderNo('${o.orderNo}')"><i class="fas fa-print"></i> Reprint Invoice</button></div>`;
+            }
+            if (o.paymentStatus === 'unpaid') {
+                paymentBtn =
+                    `<div class="track-payment-btn"><button class="btn-primary" onclick="payUnpaidOrder('${o.orderNo}')"><i class="fab fa-whatsapp"></i> Make Payment via WhatsApp</button></div>`;
             }
             return `
                 <div class="trackline">${stepsHtml}</div>
                 <div class="tablewrap"><table class="dashtable"><thead><tr><th>Item</th><th>Qty</th><th>Amount</th></tr></thead><tbody>${itemsHtml}</tbody></table></div>
                 <div style="display:flex;justify-content:space-between;margin-top:12px;font-weight:700;flex-wrap:wrap;gap:8px;">
-                  <span>Total</span><span>${naira(o.total)}</span>
+                  <span><i class="fas fa-calculator"></i> Total</span><span>${naira(o.total)}</span>
                 </div>
                 <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
                   <span class="pill ${o.paymentStatus==='paid'?'paid':'unpaid'}">${o.paymentStatus.toUpperCase()}</span>
                   <span class="pill ${o.status==='delivered'?'delivered':'pending'}">${(o.status||'pending').toUpperCase()}</span>
                 </div>
+                ${paymentBtn}
                 ${reprintBtn}
               `;
+        }
+
+        function payUnpaidOrder(orderNo) {
+            const o = STATE.orders.find(x => x.orderNo === orderNo);
+            if (!o) { toast('Order not found', 'error'); return; }
+            STATE.lastOrder = o;
+            payViaWhatsapp();
         }
 
         /* ======================================================================
@@ -4256,12 +5274,13 @@
         }
 
         async function submitRegistration() {
-            const name = document.getElementById('regName').value.trim();
-            const phone = document.getElementById('regPhone').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const address = document.getElementById('regAddress').value.trim();
+            const name = sanitizeHTML(document.getElementById('regName').value.trim());
+            const phone = sanitizeHTML(document.getElementById('regPhone').value.trim());
+            const email = sanitizeHTML(document.getElementById('regEmail').value.trim());
+            const address = sanitizeHTML(document.getElementById('regAddress').value.trim());
             const pass = document.getElementById('regPassword').value;
             const pass2 = document.getElementById('regPassword2').value;
+            if (!name || !phone) { toast('Please fill your name and phone', 'error'); return; }
             if (!pass || pass.length < 4) { toast('Password must be at least 4 characters', 'error'); return; }
             if (pass !== pass2) { toast('Passwords do not match', 'error'); return; }
             const appId = genAppId();
@@ -4272,11 +5291,11 @@
                 toast('Account created successfully!');
                 document.getElementById('view-register').innerHTML = `
                   <div class="authwrap"><div class="authcard" style="text-align:center;">
-                    <div class="success-icon">✓</div>
+                    <div class="success-icon"><i class="fas fa-check"></i></div>
                     <h2>Welcome to Dan Abibi!</h2>
                     <p class="secsub">Your account has been created. Save your APP ID to login:</p>
-                    <div class="orderno-box"><b>${appId}</b><button class="copybtn" onclick="navigator.clipboard.writeText('${appId}'); toast('APP ID copied!')">Copy</button></div>
-                    <button class="btn-primary" style="width:100%" onclick="navigateTo('login')">Continue to Login →</button>
+                    <div class="orderno-box"><b>${appId}</b><button class="copybtn" onclick="navigator.clipboard.writeText('${appId}'); toast('APP ID copied!')"><i class="fas fa-copy"></i> Copy</button></div>
+                    <button class="btn-primary" style="width:100%" onclick="navigateTo('login')"><i class="fas fa-sign-in-alt"></i> Continue to Login →</button>
                   </div></div>`;
             } catch (e) { console.error(e);
                 toast('Registration failed. Try again.', 'error'); }
@@ -4410,19 +5429,21 @@
 
             const ctx = document.getElementById('userChart');
             if (ctx) {
-                const byMonth = {};
-                orders.forEach(o => {
-                    const d = o.createdAt && o.createdAt.toDate ? o.createdAt.toDate() : new Date();
-                    const key = d.toLocaleString('en', { month: 'short' });
-                    byMonth[key] = (byMonth[key] || 0) + 1;
-                });
-                const labels = Object.keys(byMonth).length ? Object.keys(byMonth) : ['No data'];
-                const data = Object.keys(byMonth).length ? Object.values(byMonth) : [0];
-                if (STATE.userChart) STATE.userChart.destroy();
-                STATE.userChart = new Chart(ctx, { type: 'bar', data: { labels, datasets: [{ label: 'Orders',
-                        data, backgroundColor: '#F39C12', borderRadius: 8 }] },
-                    options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true,
-                            ticks: { stepSize: 1 } } } } });
+                try {
+                    const byMonth = {};
+                    orders.forEach(o => {
+                        const d = o.createdAt && o.createdAt.toDate ? o.createdAt.toDate() : new Date();
+                        const key = d.toLocaleString('en', { month: 'short' });
+                        byMonth[key] = (byMonth[key] || 0) + 1;
+                    });
+                    const labels = Object.keys(byMonth).length ? Object.keys(byMonth) : ['No data'];
+                    const data = Object.keys(byMonth).length ? Object.values(byMonth) : [0];
+                    if (STATE.userChart) STATE.userChart.destroy();
+                    STATE.userChart = new Chart(ctx, { type: 'bar', data: { labels, datasets: [{ label: 'Orders',
+                            data, backgroundColor: '#F39C12', borderRadius: 8 }] },
+                        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true,
+                                ticks: { stepSize: 1 } } } } });
+                } catch (e) { console.warn('Chart error:', e); }
             }
 
             const tbody = document.querySelector('#userOrdersTable tbody');
@@ -4431,8 +5452,9 @@
                 <td><span class="pill ${o.status==='delivered'?'delivered':'pending'}">${(o.status||'pending').toUpperCase()}</span></td>
                 <td><span class="pill ${o.paymentStatus==='paid'?'paid':'unpaid'}">${o.paymentStatus.toUpperCase()}</span></td>
                 <td>
-                  <button class="smallbtn" onclick="reprintInvoiceByOrderNo('${o.orderNo}')">Print</button>
-                  ${o.paymentStatus === 'paid' ? `<button class="smallbtn" style="background:#1e824c;color:#fff;" onclick="reprintInvoiceByOrderNo('${o.orderNo}')">🖨️</button>` : ''}
+                  <button class="smallbtn" onclick="reprintInvoiceByOrderNo('${o.orderNo}')"><i class="fas fa-print"></i></button>
+                  ${o.paymentStatus === 'paid' ? `<button class="smallbtn" style="background:#1e824c;color:#fff;" onclick="reprintInvoiceByOrderNo('${o.orderNo}')"><i class="fas fa-file-invoice"></i></button>` : ''}
+                  ${o.paymentStatus === 'unpaid' ? `<button class="smallbtn" style="background:#25d366;color:#fff;" onclick="payUnpaidOrder('${o.orderNo}')"><i class="fab fa-whatsapp"></i> Pay</button>` : ''}
                 </td></tr>`).join('') ||
                 `<tr><td colspan="6" style="text-align:center;color:#999;">No orders yet</td></tr>`;
 
@@ -4446,9 +5468,9 @@
             const pWrap = document.getElementById('userPendingProgress');
             pWrap.innerHTML = pending.length ? pending.map(o => `
                 <div class="chartbox" style="margin-bottom:12px;">
-                  <b>${o.orderNo}</b> — ${naira(o.total)}
+                  <b><i class="fas fa-box"></i> ${o.orderNo}</b> — ${naira(o.total)}
                   ${renderOrderTracker(o, true)}
-                </div>`).join('') : `<p style="color:#999;">No pending orders 🎉</p>`;
+                </div>`).join('') : `<p style="color:#999;"><i class="fas fa-check-circle" style="color:#1e824c;"></i> No pending orders 🎉</p>`;
         }
 
         function renderUserAlerts() {
@@ -4457,10 +5479,10 @@
             const newest = STATE.products.filter(p => p.isNew).slice(0, 6);
             grid.innerHTML = newest.length ? newest.map(p => `
                 <div class="prodcard" onclick="navigateTo('landing'); scrollToProducts();">
-                  <div class="prodimgwrap"><img src="${(p.images&&p.images[0])||''}"><div class="wishtag">NEW</div></div>
+                  <div class="prodimgwrap"><img src="${(p.images&&p.images[0])||''}"><div class="wishtag"><i class="fas fa-star"></i> NEW</div></div>
                   <div class="prodbody"><div class="prodcat">${escapeHtml(p.category)}</div><div class="prodname">${escapeHtml(p.name)}</div>
                   <div class="prodprice"><span class="now">${naira(p.price)}</span></div></div>
-                </div>`).join('') : `<p style="color:#999;">No new arrivals right now — check back soon!</p>`;
+                </div>`).join('') : `<p style="color:#999;"><i class="fas fa-info-circle"></i> No new arrivals right now — check back soon!</p>`;
         }
 
         /* ======================================================================
@@ -4474,10 +5496,11 @@
             renderAdminFeaturedTable();
             renderAdminCategoriesTable();
             renderAdminUsersTable();
+            renderAdminFaqTable();
         }
 
         function switchAdminTab(tab) {
-            ['overview', 'orders', 'products', 'categories', 'users', 'featured'].forEach(t => {
+            ['overview', 'orders', 'products', 'categories', 'users', 'featured', 'faq'].forEach(t => {
                 document.getElementById('adminTab-' + t).classList.toggle('hidden', t !== tab);
             });
             document.querySelectorAll('.sidenav a[data-tab]').forEach(a => a.classList.toggle('active', a.dataset.tab ===
@@ -4494,19 +5517,21 @@
             document.getElementById('a-stat-products').textContent = STATE.products.length;
             const ctx = document.getElementById('adminChart');
             if (ctx) {
-                const byMonth = {};
-                STATE.orders.forEach(o => {
-                    const d = o.createdAt && o.createdAt.toDate ? o.createdAt.toDate() : new Date();
-                    const key = d.toLocaleString('en', { month: 'short' });
-                    byMonth[key] = (byMonth[key] || 0) + 1;
-                });
-                const labels = Object.keys(byMonth).length ? Object.keys(byMonth) : ['No data'];
-                const data = Object.keys(byMonth).length ? Object.values(byMonth) : [0];
-                if (STATE.adminChart) STATE.adminChart.destroy();
-                STATE.adminChart = new Chart(ctx, { type: 'bar', data: { labels, datasets: [{ label: 'Orders',
-                        data, backgroundColor: '#D97706', borderRadius: 8 }] },
-                    options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true,
-                            ticks: { stepSize: 1 } } } } });
+                try {
+                    const byMonth = {};
+                    STATE.orders.forEach(o => {
+                        const d = o.createdAt && o.createdAt.toDate ? o.createdAt.toDate() : new Date();
+                        const key = d.toLocaleString('en', { month: 'short' });
+                        byMonth[key] = (byMonth[key] || 0) + 1;
+                    });
+                    const labels = Object.keys(byMonth).length ? Object.keys(byMonth) : ['No data'];
+                    const data = Object.keys(byMonth).length ? Object.values(byMonth) : [0];
+                    if (STATE.adminChart) STATE.adminChart.destroy();
+                    STATE.adminChart = new Chart(ctx, { type: 'bar', data: { labels, datasets: [{ label: 'Orders',
+                            data, backgroundColor: '#D97706', borderRadius: 8 }] },
+                        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true,
+                                ticks: { stepSize: 1 } } } } });
+                } catch (e) { console.warn('Chart error:', e); }
             }
         }
 
@@ -4519,9 +5544,10 @@
                   <td><span class="pill ${o.paymentStatus==='paid'?'paid':'unpaid'}">${o.paymentStatus.toUpperCase()}</span></td>
                   <td><span class="pill ${o.status==='delivered'?'delivered':'pending'}">${(o.status||'pending').toUpperCase()}</span></td>
                   <td>
-                    <button class="smallbtn" onclick="toggleOrderPayment('${o.id}','${o.paymentStatus}')">${o.paymentStatus==='paid'?'Mark Unpaid':'Mark Paid'}</button>
-                    <button class="smallbtn" onclick="toggleOrderStatus('${o.id}','${o.status}')">${o.status==='delivered'?'Mark Pending':'Mark Delivered'}</button>
-                    <button class="smallbtn" onclick="reprintInvoiceByOrderNo('${o.orderNo}')">Print</button>
+                    <button class="smallbtn" onclick="toggleOrderPayment('${o.id}','${o.paymentStatus}')">${o.paymentStatus==='paid'?'<i class="fas fa-times"></i> Unpaid':'<i class="fas fa-check"></i> Paid'}</button>
+                    <button class="smallbtn" onclick="toggleOrderStatus('${o.id}','${o.status}')">${o.status==='delivered'?'<i class="fas fa-clock"></i> Pending':'<i class="fas fa-truck"></i> Deliver'}</button>
+                    <button class="smallbtn" onclick="reprintInvoiceByOrderNo('${o.orderNo}')"><i class="fas fa-print"></i></button>
+                    ${o.paymentStatus==='unpaid' ? `<button class="smallbtn" style="background:#25d366;color:#fff;" onclick="payUnpaidOrder('${o.orderNo}')"><i class="fab fa-whatsapp"></i></button>` : ''}
                   </td>
                 </tr>`).join('') || `<tr><td colspan="6" style="text-align:center;color:#999;">No orders yet</td></tr>`;
         }
@@ -4543,9 +5569,9 @@
                 <tr>
                   <td><img src="${(p.images&&p.images[0])||''}" style="width:40px;height:40px;object-fit:cover;border-radius:8px;"></td>
                   <td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.category)}</td><td>${naira(p.price)}</td><td>${p.discount||0}%</td>
-                  <td>${p.featured ? '⭐' : '—'}</td>
-                  <td><button class="smallbtn" onclick="openProductForm('${p.id}')">Edit</button>
-                  <button class="smallbtn" style="background:#c0392b;color:#fff;" onclick="deleteProduct('${p.id}')">Delete</button></td>
+                  <td>${p.featured ? '<i class="fas fa-star" style="color:var(--gold);"></i>' : '—'}</td>
+                  <td><button class="smallbtn" onclick="openProductForm('${p.id}')"><i class="fas fa-edit"></i></button>
+                  <button class="smallbtn" style="background:#c0392b;color:#fff;" onclick="deleteProduct('${p.id}')"><i class="fas fa-trash"></i></button></td>
                 </tr>`).join('') || `<tr><td colspan="7" style="text-align:center;color:#999;">No products yet</td></tr>`;
         }
 
@@ -4554,8 +5580,8 @@
             tbody.innerHTML = STATE.products.map(p => `
                 <tr>
                   <td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.category)}</td><td>${naira(p.price)}</td>
-                  <td>${p.featured ? '⭐ Featured' : '—'}</td>
-                  <td><button class="smallbtn" onclick="toggleFeatured('${p.id}','${p.featured}')">${p.featured ? 'Remove' : 'Feature'}</button></td>
+                  <td>${p.featured ? '<i class="fas fa-star" style="color:var(--gold);"></i> Featured' : '—'}</td>
+                  <td><button class="smallbtn" onclick="toggleFeatured('${p.id}','${p.featured}')">${p.featured ? '<i class="fas fa-times"></i> Remove' : '<i class="fas fa-star"></i> Feature'}</button></td>
                 </tr>`).join('') || `<tr><td colspan="5" style="text-align:center;color:#999;">No products yet</td></tr>`;
         }
 
@@ -4568,7 +5594,7 @@
             renderCategorySelectOptions();
             if (id) {
                 const p = STATE.products.find(x => x.id === id);
-                document.getElementById('pfTitle').textContent = 'Edit Product';
+                document.getElementById('pfTitle').innerHTML = '<i class="fas fa-edit"></i> Edit Product';
                 document.getElementById('pfId').value = id;
                 document.getElementById('pfName').value = p.name;
                 document.getElementById('pfCategory').value = p.category;
@@ -4581,7 +5607,7 @@
                 document.getElementById('pfNew').value = p.isNew ? 'true' : 'false';
                 document.getElementById('pfFeatured').value = p.featured ? 'true' : 'false';
             } else {
-                document.getElementById('pfTitle').textContent = 'Add Product';
+                document.getElementById('pfTitle').innerHTML = '<i class="fas fa-box"></i> Add Product';
                 ['pfId', 'pfName', 'pfImages', 'pfDesc'].forEach(id2 => document.getElementById(id2).value = '');
                 document.getElementById('pfPrice').value = '';
                 document.getElementById('pfDiscount').value = 0;
@@ -4596,13 +5622,13 @@
         async function saveProduct() {
             const id = document.getElementById('pfId').value;
             const data = {
-                name: document.getElementById('pfName').value.trim(),
+                name: sanitizeHTML(document.getElementById('pfName').value.trim()),
                 category: document.getElementById('pfCategory').value,
                 price: Number(document.getElementById('pfPrice').value) || 0,
                 discount: Number(document.getElementById('pfDiscount').value) || 0,
                 rating: Number(document.getElementById('pfRating').value) || 4.5,
                 images: document.getElementById('pfImages').value.split(',').map(s => s.trim()).filter(Boolean),
-                description: document.getElementById('pfDesc').value.trim(),
+                description: sanitizeHTML(document.getElementById('pfDesc').value.trim()),
                 buyersCount: Number(document.getElementById('pfBuyers').value) || 0,
                 isNew: document.getElementById('pfNew').value === 'true',
                 featured: document.getElementById('pfFeatured').value === 'true'
@@ -4630,12 +5656,12 @@
             const tbody = document.querySelector('#adminCatsTable tbody');
             tbody.innerHTML = STATE.categories.map(c => `
                 <tr><td>${c.icon||'🛍️'}</td><td>${escapeHtml(c.name)}</td>
-                <td><button class="smallbtn" style="background:#c0392b;color:#fff;" onclick="deleteCategory('${c.id}')">Delete</button></td></tr>`).join('') ||
+                <td><button class="smallbtn" style="background:#c0392b;color:#fff;" onclick="deleteCategory('${c.id}')"><i class="fas fa-trash"></i></button></td></tr>`).join('') ||
                 `<tr><td colspan="3" style="text-align:center;color:#999;">No categories yet</td></tr>`;
         }
 
         async function addCategory() {
-            const name = document.getElementById('newCatName').value.trim();
+            const name = sanitizeHTML(document.getElementById('newCatName').value.trim());
             const icon = document.getElementById('newCatIcon').value.trim() || '🛍️';
             if (!name) { toast('Enter category name', 'error'); return; }
             await db.collection('categories').add({ name, icon,
@@ -4657,8 +5683,8 @@
             tbody.innerHTML = STATE.users.map(u => {
                 const orderCount = STATE.orders.filter(o => o.userAppId === u.appId).length;
                 return `<tr><td>${u.appId}</td><td>${escapeHtml(u.name)}</td><td>${escapeHtml(u.phone)}</td><td>${orderCount}</td>
-                <td><button class="smallbtn" onclick="editUserPrompt('${u.id}')">Edit</button>
-                <button class="smallbtn" style="background:#c0392b;color:#fff;" onclick="deleteUser('${u.id}')">Delete</button></td></tr>`;
+                <td><button class="smallbtn" onclick="editUserPrompt('${u.id}')"><i class="fas fa-edit"></i></button>
+                <button class="smallbtn" style="background:#c0392b;color:#fff;" onclick="deleteUser('${u.id}')"><i class="fas fa-trash"></i></button></td></tr>`;
             }).join('') || `<tr><td colspan="5" style="text-align:center;color:#999;">No registered users yet</td></tr>`;
         }
 
@@ -4669,7 +5695,7 @@
             if (newName === null) return;
             const newPhone = prompt('Edit phone:', u.phone);
             if (newPhone === null) return;
-            await db.collection('users').doc(id).update({ name: newName, phone: newPhone });
+            await db.collection('users').doc(id).update({ name: sanitizeHTML(newName), phone: sanitizeHTML(newPhone) });
             toast('User updated');
         }
 
@@ -4680,7 +5706,122 @@
         }
 
         /* ======================================================================
-           AI CHATBOT - RIGHT SIDE WITH FULL RECOVERY
+           FAQ SYSTEM
+        ====================================================================== */
+        function renderFaqs() {
+            const container = document.getElementById('faqList');
+            if (STATE.faqs.length === 0) {
+                container.innerHTML = `
+                  <div class="faq-empty">
+                    <div class="faq-empty-icon"><i class="fas fa-question-circle" style="font-size:40px;"></i></div>
+                    <h3>No FAQs yet</h3>
+                    <p style="color:#999;font-size:13px;">Check back soon for answers to common questions.</p>
+                  </div>
+                `;
+                return;
+            }
+            container.innerHTML = STATE.faqs.map((f, idx) => `
+                <div class="faq-item" data-idx="${idx}">
+                  <div class="faq-q" onclick="toggleFaq(${idx})">
+                    <span><i class="fas fa-question-circle" style="color:var(--gold);margin-right:8px;"></i> ${escapeHtml(f.question)}</span>
+                    <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                  </div>
+                  <div class="faq-a">
+                    <i class="fas fa-reply" style="color:var(--gold);margin-right:8px;"></i> ${escapeHtml(f.answer)}
+                    ${STATE.isAdmin ? `<div class="faq-admin-actions">
+                      <button class="smallbtn" onclick="editFaq('${f.id}')"><i class="fas fa-edit"></i> Edit</button>
+                      <button class="smallbtn" style="background:#c0392b;color:#fff;" onclick="deleteFaq('${f.id}')"><i class="fas fa-trash"></i> Delete</button>
+                    </div>` : ''}
+                  </div>
+                </div>
+              `).join('');
+        }
+
+        function toggleFaq(idx) {
+            const items = document.querySelectorAll('.faq-item');
+            const item = items[idx];
+            if (!item) return;
+            const answer = item.querySelector('.faq-a');
+            const icon = item.querySelector('.faq-icon');
+            const isOpen = answer.classList.contains('open');
+            document.querySelectorAll('.faq-a').forEach(el => el.classList.remove('open'));
+            document.querySelectorAll('.faq-icon').forEach(el => el.classList.remove('open'));
+            if (!isOpen) {
+                answer.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+
+        function renderAdminFaqTable() {
+            const tbody = document.querySelector('#adminFaqTable tbody');
+            tbody.innerHTML = STATE.faqs.map(f => `
+                <tr>
+                  <td>${escapeHtml(f.question)}</td>
+                  <td>${escapeHtml((f.answer||'').slice(0,60))}${(f.answer||'').length>60?'...':''}</td>
+                  <td>
+                    <button class="smallbtn" onclick="editFaq('${f.id}')"><i class="fas fa-edit"></i></button>
+                    <button class="smallbtn" style="background:#c0392b;color:#fff;" onclick="deleteFaq('${f.id}')"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>`).join('') || `<tr><td colspan="3" style="text-align:center;color:#999;">No FAQs yet</td></tr>`;
+        }
+
+        function editFaq(id) {
+            const f = STATE.faqs.find(x => x.id === id);
+            if (!f) return;
+            document.getElementById('faqEditId').value = id;
+            document.getElementById('faqQuestion').value = f.question;
+            document.getElementById('faqAnswer').value = f.answer;
+            document.querySelector('#adminTab-faq .admin-faq-form h4').innerHTML =
+                '<i class="fas fa-edit"></i> Edit FAQ';
+            document.querySelector('#adminTab-faq .admin-faq-form .btn-primary').innerHTML =
+                '<i class="fas fa-save"></i> Update FAQ';
+            document.querySelector('#adminTab-faq .admin-faq-form .btn-ghost').classList.remove('hidden');
+            document.querySelector('#adminTab-faq .admin-faq-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function cancelFaqEdit() {
+            document.getElementById('faqEditId').value = '';
+            document.getElementById('faqQuestion').value = '';
+            document.getElementById('faqAnswer').value = '';
+            document.querySelector('#adminTab-faq .admin-faq-form h4').innerHTML =
+                '<i class="fas fa-plus-circle"></i> Add New FAQ';
+            document.querySelector('#adminTab-faq .admin-faq-form .btn-primary').innerHTML =
+                '<i class="fas fa-plus"></i> Add FAQ';
+            document.querySelector('#adminTab-faq .admin-faq-form .btn-ghost').classList.add('hidden');
+        }
+
+        async function saveFaq() {
+            const question = sanitizeHTML(document.getElementById('faqQuestion').value.trim());
+            const answer = sanitizeHTML(document.getElementById('faqAnswer').value.trim());
+            if (!question || !answer) { toast('Please fill both question and answer', 'error'); return; }
+            const editId = document.getElementById('faqEditId').value;
+            try {
+                if (editId) {
+                    await db.collection('faqs').doc(editId).update({ question, answer });
+                    toast('FAQ updated');
+                } else {
+                    const count = STATE.faqs.length;
+                    await db.collection('faqs').add({
+                        question,
+                        answer,
+                        order: count + 1,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    toast('FAQ added');
+                }
+                cancelFaqEdit();
+            } catch (e) { console.error(e);
+                toast('Failed to save FAQ', 'error'); }
+        }
+
+        async function deleteFaq(id) {
+            if (!confirm('Delete this FAQ?')) return;
+            await db.collection('faqs').doc(id).delete();
+            toast('FAQ deleted');
+        }
+
+        /* ======================================================================
+           AI CHATBOT
         ====================================================================== */
         function toggleChatbot() {
             const win = document.getElementById('chatbotWindow');
@@ -4697,7 +5838,7 @@
             const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             if (type === 'bot') {
                 div.innerHTML =
-                    `<span class="bot-name">🤖 DAN-ABIBI AI</span>${text}<span class="msg-time">${time}</span>`;
+                    `<span class="bot-name"><i class="fas fa-robot"></i> DAN-ABIBI AI</span>${text}<span class="msg-time">${time}</span>`;
             } else {
                 div.innerHTML = `${text}<span class="msg-time">${time}</span>`;
             }
@@ -4727,7 +5868,6 @@
         async function processAICommand(text) {
             const lower = text.toLowerCase().trim();
 
-            // Check if we're in a context flow
             if (STATE.chatContext === 'recovery') {
                 await handleRecoveryFlow(text);
                 return;
@@ -4741,7 +5881,6 @@
                 return;
             }
 
-            // Check for commands
             if (lower.includes('recovery') || lower.includes('recover') || lower.includes('app id') || lower.includes(
                     'forgot') || lower.includes('id recovery')) {
                 STATE.chatContext = 'recovery';
@@ -4751,7 +5890,8 @@
                 setTimeout(() => {
                     showTyping(false);
                     addChatMessage('bot',
-                        `🔑 I'll help you recover your APP ID for login.\n\nPlease enter your **full name** as registered:`);
+                        `<i class="fas fa-key"></i> I'll help you recover your APP ID for login.\n\nPlease enter your **full name** as registered:`
+                        );
                 }, 600);
                 return;
             }
@@ -4763,7 +5903,9 @@
                 showTyping(true);
                 setTimeout(() => {
                     showTyping(false);
-                    addChatMessage('bot', `✅ Let me validate your order.\n\nPlease enter your **order number** (e.g., DAB-482913):`);
+                    addChatMessage('bot',
+                        `<i class="fas fa-check-circle"></i> Let me validate your order.\n\nPlease enter your **order number** (e.g., DAB-482913):`
+                        );
                 }, 600);
                 return;
             }
@@ -4778,7 +5920,7 @@
                 setTimeout(() => {
                     showTyping(false);
                     const featured = STATE.products.filter(p => p.featured).slice(0, 5);
-                    let msg = `🛒 Let's place an order!\n\nHere are some featured products:\n`;
+                    let msg = `<i class="fas fa-shopping-cart"></i> Let's place an order!\n\nHere are some featured products:\n`;
                     featured.forEach((p, i) => {
                         const disc = p.discount ? ` (${p.discount}% off)` : '';
                         msg += `${i+1}. ${p.name} — ${naira(p.price)}${disc}\n`;
@@ -4797,14 +5939,16 @@
                     const featured = STATE.products.filter(p => p.featured).slice(0, 6);
                     if (featured.length === 0) {
                         addChatMessage('bot',
-                            `📦 No featured products right now. Check back later or browse our full collection on the website!`
+                            `<i class="fas fa-box"></i> No featured products right now. Check back later or browse our full collection on the website!`
                             );
                         return;
                     }
-                    let msg = `📦 **Featured Products**\n\n`;
+                    let msg = `<i class="fas fa-box"></i> **Featured Products**\n\n`;
                     featured.forEach(p => {
                         const disc = p.discount ? ` (${p.discount}% off, was ${naira(p.price)})` : '';
-                        msg += `⭐ **${p.name}**\n   ${p.category} · ${naira(p.discount?Math.round(p.price*(1-p.discount/100)):p.price)}${disc}\n   ${(p.description||'').slice(0,60)}...\n\n`;
+                        const avgRating = p.avgRating || p.rating || 0;
+                        msg +=
+                            `⭐ **${p.name}**\n   ${p.category} · ${naira(p.discount?Math.round(p.price*(1-p.discount/100)):p.price)}${disc}\n   ⭐ ${avgRating.toFixed(1)} (${p.ratingCount||0} ratings)\n   ${(p.description||'').slice(0,60)}...\n\n`;
                     });
                     msg += `Type "Make order" to purchase any product.`;
                     addChatMessage('bot', msg);
@@ -4817,7 +5961,7 @@
                 setTimeout(() => {
                     showTyping(false);
                     addChatMessage('bot',
-                        `🤖 **DAN-ABIBI AI Commands**\n\n` +
+                        `<i class="fas fa-question-circle"></i> **DAN-ABIBI AI Commands**\n\n` +
                         `• **Recovery ID** — Recover your APP ID for login\n` +
                         `• **Validate order** — Check order status\n` +
                         `• **Make order** — Place a new order\n` +
@@ -4829,14 +5973,13 @@
                 return;
             }
 
-            // General knowledge about the store
             if (lower.includes('about') || lower.includes('store') || lower.includes('company') || lower.includes(
                 'dan abibi')) {
                 showTyping(true);
                 setTimeout(() => {
                     showTyping(false);
                     addChatMessage('bot',
-                        `🏪 **About Dan Abibi Shopping Complex**\n\n` +
+                        `<i class="fas fa-store"></i> **About Dan Abibi Shopping Complex**\n\n` +
                         `${COMPANY.fullName}\n` +
                         `📍 ${COMPANY.address}\n` +
                         `📞 ${COMPANY.phone}\n\n` +
@@ -4847,12 +5990,11 @@
                 return;
             }
 
-            // Default response with suggestions
             showTyping(true);
             setTimeout(() => {
                 showTyping(false);
                 addChatMessage('bot',
-                    `🤖 I'm here to help! Try one of these commands:\n\n` +
+                    `<i class="fas fa-robot"></i> I'm here to help! Try one of these commands:\n\n` +
                     `• **Recovery ID** — Recover your APP ID for login\n` +
                     `• **Validate order** — Check order status\n` +
                     `• **Make order** — Place a new order\n` +
@@ -4862,14 +6004,15 @@
             }, 600);
         }
 
-        // --- Recovery Flow (Fully functional for APP ID recovery) ---
         async function handleRecoveryFlow(text) {
             if (!STATE.chatRecoveryName) {
                 STATE.chatRecoveryName = text.trim();
                 showTyping(true);
                 setTimeout(() => {
                     showTyping(false);
-                    addChatMessage('bot', `Thank you! Now please enter your **email address** you used during registration:`);
+                    addChatMessage('bot',
+                        `Thank you! Now please enter your **email address** you used during registration:`
+                        );
                 }, 400);
                 return;
             }
@@ -4877,7 +6020,6 @@
                 STATE.chatRecoveryEmail = text.trim();
                 showTyping(true);
                 try {
-                    // Search for user by name and email
                     const snap = await db.collection('users')
                         .where('name', '==', STATE.chatRecoveryName)
                         .where('email', '==', STATE.chatRecoveryEmail)
@@ -4885,7 +6027,6 @@
                         .get();
                     showTyping(false);
                     if (snap.empty) {
-                        // Try searching by name only as fallback
                         const snapByName = await db.collection('users')
                             .where('name', '==', STATE.chatRecoveryName)
                             .limit(1)
@@ -4893,31 +6034,31 @@
                         if (!snapByName.empty && snapByName.docs[0].data().email === STATE.chatRecoveryEmail) {
                             const user = snapByName.docs[0].data();
                             addChatMessage('bot',
-                                `✅ **APP ID Found!**\n\n<div class="chat-recovery-highlight">${user.appId}</div>\n\nYou can use this APP ID to login to your account. Keep it safe!\n\n🔑 **Login tip:** Go to the Login page and enter this APP ID along with your password.`
+                                `<i class="fas fa-check-circle" style="color:#1e824c;"></i> **APP ID Found!**\n\n<div class="chat-recovery-highlight">${user.appId}</div>\n\nYou can use this APP ID to login to your account. Keep it safe!\n\n🔑 **Login tip:** Go to the Login page and enter this APP ID along with your password.`
                                 );
                             STATE.chatContext = null;
                             return;
                         }
                         addChatMessage('bot',
-                            `❌ I couldn't find a user with that name and email. Please check your details and try "Recovery ID" again.\n\n💡 Make sure you're using the exact name and email you registered with.`
+                            `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> I couldn't find a user with that name and email. Please check your details and try "Recovery ID" again.\n\n💡 Make sure you're using the exact name and email you registered with.`
                             );
                         STATE.chatContext = null;
                         return;
                     }
                     const user = snap.docs[0].data();
                     addChatMessage('bot',
-                        `✅ **APP ID Found!**\n\n<div class="chat-recovery-highlight">${user.appId}</div>\n\nYou can use this APP ID to login to your account. Keep it safe!\n\n🔑 **Login tip:** Go to the Login page and enter this APP ID along with your password.`
+                        `<i class="fas fa-check-circle" style="color:#1e824c;"></i> **APP ID Found!**\n\n<div class="chat-recovery-highlight">${user.appId}</div>\n\nYou can use this APP ID to login to your account. Keep it safe!\n\n🔑 **Login tip:** Go to the Login page and enter this APP ID along with your password.`
                         );
                 } catch (e) {
                     showTyping(false);
-                    addChatMessage('bot', `❌ Sorry, I had trouble looking that up. Please try again later.`);
+                    addChatMessage('bot', `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> Sorry, I had trouble looking that up. Please try again later.`
+                        );
                 }
                 STATE.chatContext = null;
                 return;
             }
         }
 
-        // --- Validate Order Flow ---
         async function handleValidateFlow(text) {
             if (!STATE.chatOrderNumber) {
                 STATE.chatOrderNumber = text.trim();
@@ -4927,7 +6068,7 @@
                     showTyping(false);
                     if (snap.empty) {
                         addChatMessage('bot',
-                            `❌ I couldn't find an order with number **${STATE.chatOrderNumber}**. Please check and try again.`
+                            `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> I couldn't find an order with number **${STATE.chatOrderNumber}**. Please check and try again.`
                             );
                     } else {
                         const o = snap.docs[0].data();
@@ -4935,7 +6076,7 @@
                         if (o.paymentStatus === 'paid' && o.status === 'delivered') statusEmoji = '✅';
                         else if (o.paymentStatus === 'paid') statusEmoji = '💰';
                         let msg =
-                            `✅ **Order #${o.orderNo}**\n\n` +
+                            `<i class="fas fa-check-circle" style="color:#1e824c;"></i> **Order #${o.orderNo}**\n\n` +
                             `📅 Date: ${fmtDate(o.createdAt)}\n` +
                             `👤 Buyer: ${o.buyerName}\n` +
                             `📞 Phone: ${o.buyerPhone}\n` +
@@ -4952,27 +6093,28 @@
                         if (o.paymentStatus === 'paid') {
                             msg += `\n🖨️ You can reprint your invoice from the dashboard or use the "Print" button on your order.`;
                         } else {
-                            msg += `\n💬 Please make payment via WhatsApp to confirm your order.`;
+                            msg +=
+                                `\n💬 Please make payment via WhatsApp to confirm your order. Use the "Make Payment via WhatsApp" button.`;
                         }
                         addChatMessage('bot', msg);
                     }
                 } catch (e) {
                     showTyping(false);
-                    addChatMessage('bot', `❌ I had trouble looking that up. Please try again later.`);
+                    addChatMessage('bot', `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> I had trouble looking that up. Please try again later.`
+                        );
                 }
                 STATE.chatContext = null;
                 return;
             }
         }
 
-        // --- Make Order Flow ---
         async function handleMakeOrderFlow(text) {
             const lower = text.toLowerCase().trim();
 
             if (STATE.chatMakeStep === 0) {
                 if (lower === 'show all') {
                     const all = STATE.products.slice(0, 8);
-                    let msg = `📦 **All Products**\n\n`;
+                    let msg = `<i class="fas fa-box"></i> **All Products**\n\n`;
                     all.forEach((p, i) => {
                         const disc = p.discount ? ` (${p.discount}% off)` : '';
                         msg += `${i+1}. ${p.name} — ${naira(p.price)}${disc} (${p.category})\n`;
@@ -4993,17 +6135,19 @@
                     STATE.chatMakeStep = 1;
                     const p = STATE.chatMakeProduct;
                     const discPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
+                    const avgRating = p.avgRating || p.rating || 0;
                     addChatMessage('bot',
-                        `✅ You selected: **${p.name}**\n\n` +
+                        `<i class="fas fa-check-circle" style="color:#1e824c;"></i> You selected: **${p.name}**\n\n` +
                         `💰 Price: ${naira(discPrice)}${p.discount ? ` (was ${naira(p.price)}, ${p.discount}% off)` : ''}\n` +
                         `📦 Category: ${p.category}\n` +
+                        `⭐ Rating: ${avgRating.toFixed(1)} (${p.ratingCount||0} ratings)\n` +
                         `📝 ${(p.description||'').slice(0,120)}...\n\n` +
                         `How many would you like? (Enter a number, e.g., 1, 2, 3...)`
                     );
                     return;
                 } else {
                     addChatMessage('bot',
-                        `❌ Please enter a valid product number from the list. Type "show all" to see more products, or "Make order" to start over.`
+                        `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> Please enter a valid product number from the list. Type "show all" to see more products, or "Make order" to start over.`
                         );
                     return;
                 }
@@ -5018,7 +6162,7 @@
                     const discPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
                     const total = discPrice * qty;
                     addChatMessage('bot',
-                        `🛒 **Order Summary**\n\n` +
+                        `<i class="fas fa-shopping-cart"></i> **Order Summary**\n\n` +
                         `Product: ${p.name}\n` +
                         `Quantity: ${qty}\n` +
                         `Price per unit: ${naira(discPrice)}\n` +
@@ -5027,7 +6171,8 @@
                     );
                     return;
                 } else {
-                    addChatMessage('bot', `❌ Please enter a valid quantity (e.g., 1, 2, 3...).`);
+                    addChatMessage('bot', `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> Please enter a valid quantity (e.g., 1, 2, 3...).`
+                        );
                     return;
                 }
             }
@@ -5035,7 +6180,8 @@
             if (STATE.chatMakeStep === 2) {
                 const name = text.trim();
                 if (name.length < 2) {
-                    addChatMessage('bot', `❌ Please enter a valid name (at least 2 characters).`);
+                    addChatMessage('bot', `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> Please enter a valid name (at least 2 characters).`
+                        );
                     return;
                 }
                 STATE.chatMakeStep = 3;
@@ -5047,7 +6193,8 @@
             if (STATE.chatMakeStep === 3) {
                 const phone = text.trim();
                 if (phone.length < 5) {
-                    addChatMessage('bot', `❌ Please enter a valid phone number.`);
+                    addChatMessage('bot', `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> Please enter a valid phone number.`
+                        );
                     return;
                 }
                 STATE.chatMakeStep = 4;
@@ -5059,7 +6206,8 @@
             if (STATE.chatMakeStep === 4) {
                 const address = text.trim();
                 if (address.length < 3) {
-                    addChatMessage('bot', `❌ Please enter a valid address.`);
+                    addChatMessage('bot', `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> Please enter a valid address.`
+                        );
                     return;
                 }
                 const p = STATE.chatMakeProduct;
@@ -5072,9 +6220,9 @@
                     items: [{ productId: p.id, name: p.name, price: discPrice, qty: STATE.chatMakeQty, image: (p
                             .images && p.images[0]) || '' }],
                     total,
-                    buyerName: STATE.chatRecoveryName,
-                    buyerPhone: STATE.chatRecoveryEmail,
-                    buyerAddress: address,
+                    buyerName: sanitizeHTML(STATE.chatRecoveryName),
+                    buyerPhone: sanitizeHTML(STATE.chatRecoveryEmail),
+                    buyerAddress: sanitizeHTML(address),
                     note: 'Order placed via DAN-ABIBI AI',
                     status: 'pending',
                     paymentStatus: 'unpaid',
@@ -5088,18 +6236,20 @@
                     STATE.chatContext = null;
                     STATE.chatMakeStep = 0;
                     addChatMessage('bot',
-                        `✅ **Order Placed Successfully!**\n\n` +
+                        `<i class="fas fa-check-circle" style="color:#1e824c;"></i> **Order Placed Successfully!**\n\n` +
                         `Order #: ${orderNo}\n` +
                         `Product: ${p.name} x${STATE.chatMakeQty}\n` +
                         `Total: ${naira(total)}\n` +
                         `📦 Delivery to: ${address}\n\n` +
-                        `💬 Please make payment via WhatsApp: [Click here to pay](https://wa.me/${COMPANY.whatsapp}?text=Hello%20Dan%20Abibi%2C%20I%20want%20to%20pay%20for%20order%20${orderNo})\n\n` +
-                        `You can also track this order anytime using the "Validate order" command.`
+                        `💬 Please make payment via WhatsApp using the "Make Payment via WhatsApp" button in your order tracking.\n\n` +
+                        `You can track this order anytime using the "Validate order" command.`
                     );
                     toast(`Order #${orderNo} placed via AI chatbot!`);
                 } catch (e) {
                     console.error(e);
-                    addChatMessage('bot', `❌ Sorry, I couldn't place your order. Please try again or visit the website.`);
+                    addChatMessage('bot',
+                        `<i class="fas fa-exclamation-circle" style="color:#c0392b;"></i> Sorry, I couldn't place your order. Please try again or visit the website.`
+                        );
                 }
                 STATE.chatContext = null;
                 STATE.chatMakeStep = 0;
@@ -5126,12 +6276,14 @@
         function renderFlyer(p) {
             const preview = document.getElementById('flyerPreview');
             const discPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
+            const avgRating = p.avgRating || p.rating || 0;
+            const ratingCount = p.ratingCount || 0;
             const imgSrc = (p.images && p.images[0]) || 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=600&auto=format&fit=crop';
             preview.innerHTML = `
                 <div style="background:linear-gradient(160deg,#1a1a1a,#2a2a2a);border-radius:16px;overflow:hidden;border:2px solid var(--gold);">
                   <div style="position:relative;">
                     <img src="${imgSrc}" alt="${escapeHtml(p.name)}" style="width:100%;height:320px;object-fit:cover;display:block;">
-                    <div style="position:absolute;top:16px;left:16px;background:var(--gold-grad);color:#000;font-size:11px;font-weight:800;padding:6px 18px;border-radius:20px;letter-spacing:1px;box-shadow:var(--shadow-gold);">⭐ FEATURED</div>
+                    <div style="position:absolute;top:16px;left:16px;background:var(--gold-grad);color:#000;font-size:11px;font-weight:800;padding:6px 18px;border-radius:20px;letter-spacing:1px;box-shadow:var(--shadow-gold);"><i class="fas fa-crown"></i> PREMIUM</div>
                     ${p.discount ? `<div style="position:absolute;top:16px;right:16px;background:#c0392b;color:#fff;font-size:13px;font-weight:800;padding:6px 16px;border-radius:20px;">-${p.discount}% OFF</div>` : ''}
                   </div>
                   <div style="padding:24px;background:#fff;">
@@ -5145,14 +6297,18 @@
                     <div style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--charcoal);margin:4px 0 2px;">${escapeHtml(p.name)}</div>
                     <div style="font-size:12px;color:var(--gold);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">${escapeHtml(p.category)}</div>
                     <div style="font-size:28px;font-weight:800;color:var(--gold);margin:6px 0 8px;">${naira(discPrice)} ${p.discount ? `<span style="font-size:16px;color:#aaa;text-decoration:line-through;font-weight:400;">${naira(p.price)}</span>` : ''}</div>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:#888;margin-bottom:8px;">
+                      <span><i class="fas fa-star" style="color:var(--gold);"></i> ${avgRating.toFixed(1)} ★ (${ratingCount} ratings)</span>
+                      <span><i class="fas fa-shopping-bag"></i> ${p.buyersCount||0}+ sold</span>
+                    </div>
                     <div style="color:#555;font-size:14px;line-height:1.7;margin-bottom:12px;">${escapeHtml(p.description||'Premium imported quality product from Dan Abibi Shopping Complex.')}</div>
                     <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#888;border-top:1px solid #eee;padding-top:12px;">
-                      <span>📍 ${COMPANY.address}</span>
-                      <span>📞 ${COMPANY.phone}</span>
-                      <span>⭐ ${p.rating||4.8} ★ (${p.buyersCount||0}+ sold)</span>
+                      <span><i class="fas fa-map-pin"></i> ${COMPANY.address}</span>
+                      <span><i class="fas fa-phone"></i> ${COMPANY.phone}</span>
+                      <span><i class="fas fa-envelope"></i> ${COMPANY.fullName}</span>
                     </div>
                     <div style="margin-top:12px;background:#fbf3e3;border-radius:10px;padding:10px 14px;font-size:12px;color:var(--charcoal);border:1px dashed var(--gold);">
-                      🛒 Available for immediate pickup or delivery. Contact us via WhatsApp to order.
+                      <i class="fas fa-shopping-cart"></i> Available for immediate pickup or delivery. Contact us via WhatsApp to order.
                     </div>
                   </div>
                 </div>
@@ -5191,6 +6347,42 @@
             });
         }
 
+        function shareFlyer() {
+            if (!STATE.flyerProduct) return;
+            const p = STATE.flyerProduct;
+            const url = window.location.href.split('?')[0] + '?product=' + p.id;
+            const text =
+                `🛍️ Check out "${p.name}" from Dan Abibi Shopping Complex! ${naira(p.discount?Math.round(p.price*(1-p.discount/100)):p.price)} - ${url}`;
+            navigator.clipboard.writeText(text).then(() => toast('Flyer link copied! 📋'));
+        }
+
+        function shareFlyerVia(platform) {
+            if (!STATE.flyerProduct) return;
+            const p = STATE.flyerProduct;
+            const url = window.location.href.split('?')[0] + '?product=' + p.id;
+            const text =
+                `🛍️ Check out "${p.name}" from Dan Abibi Shopping Complex! ${naira(p.discount?Math.round(p.price*(1-p.discount/100)):p.price)} - ${url}`;
+            let shareUrl = '';
+            switch (platform) {
+                case 'facebook':
+                    shareUrl =
+                        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(text).then(() => toast('Flyer link copied! 📋'));
+                    return;
+                default:
+                    return;
+            }
+            if (shareUrl) window.open(shareUrl, '_blank');
+        }
+
         /* ======================================================================
            SCROLL REVEAL
         ====================================================================== */
@@ -5214,9 +6406,9 @@
             listenProducts();
             listenOrders();
             listenUsers();
+            listenFaqs();
             initScrollReveal();
 
-            // Close chatbot on outside click
             document.addEventListener('click', function(e) {
                 const win = document.getElementById('chatbotWindow');
                 const toggle = document.getElementById('chatbotToggle');
@@ -5225,8 +6417,32 @@
                 }
             });
 
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('product');
+            if (productId) {
+                setTimeout(() => {
+                    const p = STATE.products.find(x => x.id === productId);
+                    if (p) openProductModal(productId);
+                }, 1200);
+            }
+
             setTimeout(() => { document.getElementById('loader').classList.add('done'); }, 800);
+
+            // Security: Prevent XSS via URL params
+            if (window.location.search.includes('<') || window.location.search.includes('>')) {
+                window.location.href = window.location.href.split('?')[0];
+            }
         }
+
+        // Keyboard navigation for product slides
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('productModal');
+            if (modal && modal.classList.contains('show')) {
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                else if (e.key === 'ArrowRight') changeSlide(1);
+            }
+        });
+
         initApp();
     </script>
 </body>
